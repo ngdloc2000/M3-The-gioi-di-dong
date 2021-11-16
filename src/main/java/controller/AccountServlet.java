@@ -30,6 +30,7 @@ public class AccountServlet extends HttpServlet {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println("tét");
     }
 
     private void showLoginForm(HttpServletRequest request, HttpServletResponse response) {
