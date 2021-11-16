@@ -18,10 +18,10 @@
       <h2>
         <a href="/login?action=register">Add Account</a>
       </h2>
-      <form method="post">
+      <form method="post" >
         <div class="mb-3">
-          <label class="form-label">Email</label>
-          <input type="text" class="form-control"  aria-describedby="emailHelp" name="email"></div>
+          <label class="form-label">Username</label>
+          <input type="text" class="form-control"  aria-describedby="emailHelp" name="username"></div>
         <div class="mb-3">
           <label  class="form-label">Password</label>
           <input type="password" class="form-control" name="password">
@@ -30,9 +30,9 @@
           <label  class="form-label">Name</label>
           <input type="text" class="form-control" name="name">
         </div>
-        <select class="form-select" multiple aria-label="multiple select example" name="permission" aria-hidden="true">
-          <c:forEach items="${list}" var="c">
-            <option value="${c.idPermission}">${c.namePermission}</option>
+        <select class="form-select" aria-label="Default select example" name = "role">
+          <c:forEach items="${list}" var="t">
+            <option value="${t.idRole}">${t.nameRole}</option>
           </c:forEach>
         </select>
         <button type="submit" class="btn btn-primary">Submit</button>
