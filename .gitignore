@@ -1,4 +1,4 @@
 build
 .gradle
 src/main/java/config/ConnectionSingleton.java
-java/config
+src/main/java/config
