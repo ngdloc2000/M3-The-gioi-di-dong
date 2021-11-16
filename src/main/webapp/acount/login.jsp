@@ -16,12 +16,12 @@
 <div class = "container">
     <h1>Login</h1>
     <h2>
-        <a href="/login?action=register">Add Account</a>
+        <a href="/accounts?action=create">Add Account</a>
     </h2>
-    <form method="post" action="/login?action=login">
+    <form method="post">
         <div class="mb-3">
-            <label class="form-label">Email address</label>
-            <input type="email" class="form-control"  aria-describedby="emailHelp" name="email"></div>
+            <label class="form-label">Username</label>
+            <input type="email" class="form-control"  aria-describedby="emailHelp" name="username"></div>
         <div class="mb-3">
             <label  class="form-label">Password</label>
             <input type="password" class="form-control" name="password">

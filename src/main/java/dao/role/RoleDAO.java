@@ -1,23 +1,35 @@
 package dao.role;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import dao.IDao;
+import model.Role;
 
-public class RoleDAO {
-    public Connection getConnection() {
-        Connection connection = null;
-        try {
-            Class.forName("JDBC_DATABASE_DRIVER");
-            connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/blog",
-                    "root",
-                    "ngdloc1532k");
-            System.out.println("ket noi thanh cong");
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-            System.out.println("Ket noi khong thanh cong");
-        }
-        return connection;
+import java.util.List;
+
+public class RoleDAO implements IDao<Role> {
+
+
+    @Override
+    public List<Role> findAll() {
+        return null;
+    }
+
+    @Override
+    public void add(Role role) {
+
+    }
+
+    @Override
+    public Role findById(int id) {
+        return null;
+    }
+
+    @Override
+    public void update(int id, Role role) {
+
+    }
+
+    @Override
+    public void remove(int id) {
+
     }
 }
