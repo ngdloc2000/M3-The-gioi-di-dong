@@ -1,12 +1,4 @@
 build
 .gradle
-<<<<<<< HEAD
-src/main/java/config/ConnectionSingleton.java
-<<<<<<< HEAD
 src/main/java/config
-=======
-src/main/java/config/Config.java
->>>>>>> d0617002eb56e2d147ace1f1032330b1c1cc0e33
-=======
-src/main/java/config/Config.java
->>>>>>> fde021ca9380dcd896fbda1193945ab52658fca4
+.idea/dataSources.xml

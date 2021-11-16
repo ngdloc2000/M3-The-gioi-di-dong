@@ -1,5 +1,7 @@
 package controller;
 
+
+import dao.IDao;
 import dao.role.IRole;
 import dao.role.RoleDAO;
 import model.Role;
@@ -12,7 +14,7 @@ import java.util.List;
 
 @WebServlet(name = "AccountServlet", value = "/accounts")
 public class AccountServlet extends HttpServlet {
-    IRole iRole = new RoleDAO();
+    IRole iRole =  new RoleDAO();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -38,7 +40,6 @@ public class AccountServlet extends HttpServlet {
         request.setAttribute("list", roleList);
         RequestDispatcher dispatcher = request.getRequestDispatcher("account/test.jsp");
         dispatcher.forward(request, response);
-        
     }
 
     private void showCreateForm(HttpServletRequest request, HttpServletResponse response) {
@@ -50,6 +51,7 @@ public class AccountServlet extends HttpServlet {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println("tét");
     }
 
     private void showLoginForm(HttpServletRequest request, HttpServletResponse response) {
@@ -74,4 +76,5 @@ public class AccountServlet extends HttpServlet {
                 showLoginForm(request,response);
         }
     }
+
 }
