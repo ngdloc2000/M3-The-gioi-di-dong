@@ -12,8 +12,8 @@
     <title>Title</title>
 </head>
 <body>
-<c:forEach items="${list}" var="role">
-    <p>${role.id} + ${role.name}</p>
+<c:forEach var="role" items="${list}">
+    <h1>${role.nameRole}</h1>
 </c:forEach>
 </body>
 </html>
