@@ -16,7 +16,6 @@ public class AccountServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
-<<<<<<< HEAD
         if (action == null) {
             action = "";
         }
@@ -39,16 +38,7 @@ public class AccountServlet extends HttpServlet {
         request.setAttribute("list", roleList);
         RequestDispatcher dispatcher = request.getRequestDispatcher("account/test.jsp");
         dispatcher.forward(request, response);
-=======
-        if(action == null){
-            action = "";
-        }
-        switch (action){
-            case "create":
-                showCreateForm(request,response);
-            default:
-                showLoginForm(request,response);
-        }
+        
     }
 
     private void showCreateForm(HttpServletRequest request, HttpServletResponse response) {
@@ -71,7 +61,6 @@ public class AccountServlet extends HttpServlet {
         } catch (IOException e) {
             e.printStackTrace();
         }
->>>>>>> d0617002eb56e2d147ace1f1032330b1c1cc0e33
     }
 
     @Override
