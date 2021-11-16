@@ -6,8 +6,10 @@ public class Product {
     private int price;
     private int quantity;
     private String description;
-    private Type type;
     private int idType;
+    private Type type;
+    private int idShop;
+    private Shop shop;
     public Product(){}
 
 
@@ -16,16 +18,40 @@ public class Product {
         return idProduct;
     }
 
-    public Product(int idProduct, String nameProduct, int price, int quantity, String description, Type type) {
+    public Product(int idProduct, String nameProduct, int price, int quantity, String description, Type type,int idShop) {
         this.idProduct = idProduct;
         this.nameProduct = nameProduct;
         this.price = price;
         this.quantity = quantity;
         this.description = description;
         this.type = type;
+        this.idShop = idShop;
+
     }
 
-    public Product( String nameProduct, int price, int quantity, String description, int idType) {
+    public Product(int idProduct, String nameProduct, int price, int quantity, String description, Type type, Shop shop) {
+        this.idProduct = idProduct;
+        this.nameProduct = nameProduct;
+        this.price = price;
+        this.quantity = quantity;
+        this.description = description;
+        this.type = type;
+        this.shop = shop;
+    }
+
+    public Product(int idProduct, String nameProduct, int price, int quantity, String description, int idType, Type type, int idShop, Shop shop) {
+        this.idProduct = idProduct;
+        this.nameProduct = nameProduct;
+        this.price = price;
+        this.quantity = quantity;
+        this.description = description;
+        this.idType = idType;
+        this.type = type;
+        this.idShop = idShop;
+        this.shop = shop;
+    }
+
+    public Product(String nameProduct, int price, int quantity, String description, int idType) {
 
         this.nameProduct = nameProduct;
         this.price = price;
@@ -84,5 +110,21 @@ public class Product {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    public int getIdShop() {
+        return idShop;
+    }
+
+    public void setIdShop(int idShop) {
+        this.idShop = idShop;
+    }
+
+    public Shop getShop() {
+        return shop;
+    }
+
+    public void setShop(Shop shop) {
+        this.shop = shop;
     }
 }

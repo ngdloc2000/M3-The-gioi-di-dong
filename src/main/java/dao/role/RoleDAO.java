@@ -1,5 +1,6 @@
 package dao.role;
 
+<<<<<<< HEAD
 import model.Role;
 
 import java.sql.*;
@@ -23,6 +24,39 @@ public class RoleDAO implements IRole {
             System.out.println("Ket noi khong thanh cong");
         }
         return connection;
+=======
+import dao.IDao;
+import model.Role;
+
+import java.util.List;
+
+public class RoleDAO implements IDao<Role> {
+
+
+    @Override
+    public List<Role> findAll() {
+        return null;
+    }
+
+    @Override
+    public void add(Role role) {
+
+    }
+
+    @Override
+    public Role findById(int id) {
+        return null;
+    }
+
+    @Override
+    public void update(int id, Role role) {
+
+    }
+
+    @Override
+    public void remove(int id) {
+
+>>>>>>> d0617002eb56e2d147ace1f1032330b1c1cc0e33
     }
 
     @Override

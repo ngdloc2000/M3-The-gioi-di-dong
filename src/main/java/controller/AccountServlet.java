@@ -16,6 +16,7 @@ public class AccountServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
+<<<<<<< HEAD
         if (action == null) {
             action = "";
         }
@@ -38,10 +39,50 @@ public class AccountServlet extends HttpServlet {
         request.setAttribute("list", roleList);
         RequestDispatcher dispatcher = request.getRequestDispatcher("account/test.jsp");
         dispatcher.forward(request, response);
+=======
+        if(action == null){
+            action = "";
+        }
+        switch (action){
+            case "create":
+                showCreateForm(request,response);
+            default:
+                showLoginForm(request,response);
+        }
+    }
+
+    private void showCreateForm(HttpServletRequest request, HttpServletResponse response) {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("account/register.jsp");
+        try {
+            requestDispatcher.forward(request,response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showLoginForm(HttpServletRequest request, HttpServletResponse response) {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("acount/login.jsp");
+        try {
+            requestDispatcher.forward(request,response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+>>>>>>> d0617002eb56e2d147ace1f1032330b1c1cc0e33
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        String action = request.getParameter("action");
+        if(action == null){
+            action = "";
+        }
+        switch (action){
+            default:
+                showLoginForm(request,response);
+        }
     }
 }

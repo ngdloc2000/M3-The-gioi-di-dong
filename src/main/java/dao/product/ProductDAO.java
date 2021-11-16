@@ -2,6 +2,7 @@ package dao.product;
 
 import config.Config;
 import model.Product;
+import model.Shop;
 import model.Type;
 
 import java.sql.*;
@@ -10,17 +11,18 @@ import java.util.List;
 
 public class ProductDAO implements IProduct{
     public final String FIND_ALL_PRODUCT = "select * from product";
-    public final String ADD_PRODUCT = "insert into product (nameProduct, price, quantity, description, idType)" +
-            "VALUE (?,?,?,?,?);";
+    public final String ADD_PRODUCT = "insert into product (nameProduct, price, quantity, description, idType,idShop)" +
+            "VALUE (?,?,?,?,?,?);";
     public final String FIND_BY_ID_PRODUCT = "select * from product where idProduct = ?;";
     public final String UPDATE_PRODUCT = "update product set nameProduct = ?, price =?,"+
-                                         " quantity = ?, description = ?, idType = ?"+
+                                         " quantity = ?, description = ?, idType = ?, idShop = ?"+
                                          " where idProduct = ?;";
     public final String REMOVE_PRODUCT = "delete from product where idProduct = ?";
 
 
 
     private ITypeDAO typeDAO = new TypeDAO();
+    private IShopDAO shopDAO = new ShopDAO();
 
 
 
@@ -39,8 +41,10 @@ public class ProductDAO implements IProduct{
                 int quantity = rs.getInt("quantity");
                 String description = rs.getString("description");
                 int idType = rs.getInt("idType");
+                int idShop = rs.getInt("idShop");
                 Type type = typeDAO.findById(idType);
-                Product product = new Product(idProduct,nameProduct,price,quantity,description,type);
+                Shop shop = shopDAO.findById(idShop);
+                Product product = new Product(idProduct,nameProduct,price,quantity,description,idType,type,idShop,shop);
                 productList.add(product);
             }
             rs.close();
@@ -63,6 +67,7 @@ public class ProductDAO implements IProduct{
             preparedStatement.setInt(3,product.getQuantity());
             preparedStatement.setString(4,product.getDescription());
             preparedStatement.setInt(5,product.getIdType());
+            preparedStatement.setInt(6,product.getIdShop());
             preparedStatement.executeUpdate();
             preparedStatement.close();
             connection.close();
@@ -87,7 +92,9 @@ public class ProductDAO implements IProduct{
             String description = rs.getString("description");
             int idType = rs.getInt("idType");
             Type type = typeDAO.findTypeById(idType);
-            product = new Product(id, nameProduct,price,quantity,description,type);
+            int idShop = rs.getInt("idShop");
+            Shop shop = shopDAO.findShopById(idShop);
+            product = new Product(id, nameProduct,price,quantity,description,idType,type,idShop,shop);
             rs.close();
             preparedStatement.close();
             connection.close();
@@ -108,7 +115,8 @@ public class ProductDAO implements IProduct{
             preparedStatement.setInt(3,product.getQuantity());
             preparedStatement.setString(4,product.getDescription());
             preparedStatement.setInt(5,product.getIdType());
-            preparedStatement.setInt(6,id);
+            preparedStatement.setInt(6,product.getIdShop());
+            preparedStatement.setInt(7,id);
             preparedStatement.executeUpdate();
 
             preparedStatement.close();
