@@ -7,8 +7,10 @@ import model.Role;
 import java.sql.Connection;
 import java.util.List;
 
-public class RoleDAO implements IDao<Role> {
+public class RoleDAO implements IRole {
 
+    public RoleDAO() {
+    }
 
     @Override
     public List<Role> findAll() {
