@@ -54,14 +54,13 @@ DROP TABLE IF EXISTS `cart`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cart` (
+  `idCart` int NOT NULL AUTO_INCREMENT,
   `idAccount` int NOT NULL,
-  `idProduct` int NOT NULL,
-  `quantity` int DEFAULT NULL,
-  `dateCreated` date DEFAULT NULL,
-  PRIMARY KEY (`idAccount`,`idProduct`),
-  KEY `idProduct` (`idProduct`),
-  CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`idAccount`) REFERENCES `account` (`idAccount`),
-  CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`idProduct`) REFERENCES `product` (`idProduct`)
+  `createDate` date DEFAULT NULL,
+  `status` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`idCart`),
+  KEY `idAccount` (`idAccount`),
+  CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`idAccount`) REFERENCES `account` (`idAccount`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -75,6 +74,33 @@ LOCK TABLES `cart` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `cartdetail`
+--
+
+DROP TABLE IF EXISTS `cartdetail`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cartdetail` (
+  `idCart` int NOT NULL,
+  `idProduct` int NOT NULL,
+  `number` int DEFAULT NULL,
+  PRIMARY KEY (`idCart`,`idProduct`),
+  KEY `idProduct` (`idProduct`),
+  CONSTRAINT `cartdetail_ibfk_1` FOREIGN KEY (`idCart`) REFERENCES `cart` (`idCart`),
+  CONSTRAINT `cartdetail_ibfk_2` FOREIGN KEY (`idProduct`) REFERENCES `product` (`idProduct`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cartdetail`
+--
+
+LOCK TABLES `cartdetail` WRITE;
+/*!40000 ALTER TABLE `cartdetail` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cartdetail` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `product`
 --
 
@@ -84,13 +110,16 @@ DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product` (
   `idProduct` int NOT NULL AUTO_INCREMENT,
   `nameProduct` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `price` int DEFAULT NULL,
+  `price` float DEFAULT NULL,
   `quantity` int DEFAULT NULL,
   `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `idType` int NOT NULL,
+  `idShop` int NOT NULL,
   PRIMARY KEY (`idProduct`),
   KEY `idType` (`idType`),
-  CONSTRAINT `product_ibfk_1` FOREIGN KEY (`idType`) REFERENCES `type` (`idType`)
+  KEY `idShop` (`idShop`),
+  CONSTRAINT `product_ibfk_1` FOREIGN KEY (`idType`) REFERENCES `type` (`idType`),
+  CONSTRAINT `product_ibfk_2` FOREIGN KEY (`idShop`) REFERENCES `shop` (`idShop`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -114,7 +143,7 @@ CREATE TABLE `role` (
   `idRole` int NOT NULL AUTO_INCREMENT,
   `nameRole` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`idRole`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -123,7 +152,34 @@ CREATE TABLE `role` (
 
 LOCK TABLES `role` WRITE;
 /*!40000 ALTER TABLE `role` DISABLE KEYS */;
+INSERT INTO `role` VALUES (1,'Admin'),(2,'Khách hàng');
 /*!40000 ALTER TABLE `role` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `shop`
+--
+
+DROP TABLE IF EXISTS `shop`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `shop` (
+  `idShop` int NOT NULL AUTO_INCREMENT,
+  `nameShop` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `idAccount` int NOT NULL,
+  PRIMARY KEY (`idShop`),
+  KEY `idAccount` (`idAccount`),
+  CONSTRAINT `shop_ibfk_1` FOREIGN KEY (`idAccount`) REFERENCES `account` (`idAccount`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `shop`
+--
+
+LOCK TABLES `shop` WRITE;
+/*!40000 ALTER TABLE `shop` DISABLE KEYS */;
+/*!40000 ALTER TABLE `shop` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -158,4 +214,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-16 10:11:49
+-- Dump completed on 2021-11-16 16:27:01

@@ -1,8 +1,10 @@
 package dao.role;
 
+
 import dao.IDao;
 import model.Role;
 
+import java.sql.Connection;
 import java.util.List;
 
 public class RoleDAO implements IDao<Role> {
@@ -33,3 +35,4 @@ public class RoleDAO implements IDao<Role> {
 
     }
 }
+
