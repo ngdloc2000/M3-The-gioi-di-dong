@@ -19,6 +19,8 @@ public class ShopDAO implements IShopDAO{
     public static final String UPDATE_SHOP = "update shop set nameShop = ?,idAccount = ? where idShop = ?;";
     public static final String DELETE_SHOP = "delete from shop where idShop = ?;";
     public static final String FIND_ALL_SHOP_BY_USER_ID = "select * from shop where shop.idAccount = ?";
+    public static final String TOTAL_SHOP_BY_USER_ID = "select count(idShop) from shop where idAccount = ?";
+
     IAccount accountDAO = new AccountDAO();
     public Connection getConnection() {
         Connection connection = null;
@@ -142,5 +144,20 @@ public class ShopDAO implements IShopDAO{
             throwables.printStackTrace();
         }
         return list;
+    }
+
+    @Override
+    public int totalShopByIdUser(int idUser) {
+        int total = 0;
+        try(Connection connection = getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(TOTAL_SHOP_BY_USER_ID)) {
+            preparedStatement.setInt(1, idUser);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()){
+                total = rs.getInt(1);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return total;
     }
 }
