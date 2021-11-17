@@ -17,13 +17,14 @@ import java.util.List;
 @WebServlet(name = "CartServlet", value = "/carts")
 public class CartServlet extends HttpServlet {
 
-    public static final String SHOW_ALL_CART_JSP = "/showAllCart.jsp";
+    public static final String SHOW_ALL_CART_JSP = "/cart/ShowAllCart.jsp";
     IProduct productDAO = new ProductDAO();
 
     ICartDao cartDAO = new CartDAO();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
+        if(action==null)action="";
         switch (action){
             case "add":
                 addCart(request,response);
