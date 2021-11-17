@@ -16,6 +16,8 @@ public class AccountDAO implements IAccount{
     public static final String FIND_ACCOUNT_BY_ID = "select a.idAccount, a.username,a.password,a.name,a.idRole from account a join role r on r.idRole = a.idRole where a.idAccount = ?;";
     public static final String UPDATE_ACCOUNT = "update account set username = ?, password = ?, name = ?, idRole = ? where idAccount = ?;";
     public static final String DELETE_ACCOUNT = "delete from account where idAccount = ?;";
+    public static final String FIND_USER_FOR_EMAIL = "select * from account a join role r on r.idRole = a.idRole where a.username like ?";
+
     RoleDAO roleDAO = new RoleDAO();
     public Connection getConnection() {
         Connection connection = null;
@@ -129,5 +131,49 @@ public class AccountDAO implements IAccount{
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+    @Override
+    public int validateUser(String email, String password){
+        try(Connection connection = getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(FIND_USER_FOR_EMAIL)) {
+            preparedStatement.setString(1,email);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()){
+                String email1 = rs.getString(2);
+                String pass = rs.getString(3);
+                int idRole = rs.getInt(5);
+                String namePermission = rs.getString("nameRole");
+                if(password.equals(pass) && email1.equals(email)){
+                    return idRole;
+                }
+                else {
+                    return -1;
+                }
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return -1;
+    }
+    @Override
+    public Account findByEmail(String username){
+        Account account = null;
+        try(Connection connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(FIND_USER_FOR_EMAIL)
+        ) {
+            preparedStatement.setString(1,username);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()){
+                int idAccount = rs.getInt(1);
+                String username1 = rs.getString(2);
+                String password = rs.getString(3);
+                String name = rs.getString(4);
+                int idRole = rs.getInt(5);
+                Role role = roleDAO.findById(idRole);
+                account = new Account(idAccount,username1,password,name,role);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return account;
     }
 }

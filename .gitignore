@@ -1,4 +1,5 @@
 build
 .gradle
-src/main/java/config/ConnectionSingleton.java
-src/main/java/config/Config.java
+src/main/java/config
+.idea/dataSources.xml
+.gitignore

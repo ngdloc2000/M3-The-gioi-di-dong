@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+
 <div id="header" style="height: 85px">
     <div class="container-fluid" style="height: 100%">
         <div class="container d-flex justify-content-between" style="height: 100%">
@@ -44,36 +45,24 @@
             </div>
 
             <form id="form-login" method="post">
-                <p style="font-size: 20px; color: #222; text-transform: capitalize; margin-top: 45px; margin-left: 35px;">Đăng nhập</p>
+                <p style="font-size: 20px; color: #222; text-transform: capitalize; margin-top: 45px; margin-left: 35px;">
+                    Đăng nhập</p>
                 <div class="mb-5" style="margin-left: 35px; height: 41px; width: 335px;">
                     <label for="exampleInputEmail1" class="form-label">Username</label>
-                    <input name="username" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input name="username" type="email" class="form-control" id="exampleInputEmail1"
+                           aria-describedby="emailHelp">
                 </div>
                 <div class="mb-5" style="margin-left: 35px; height: 41px; width: 335px;">
                     <label for="exampleInputPassword1" class="form-label">Password</label>
                     <input name="password" type="password" class="form-control" id="exampleInputPassword1">
                 </div>
-                <button type="submit" class="btn btn-primary" style="margin-left: 35px; height: 41px; width: 335px; background: #ff5722">Submit</button>
+                <button type="submit" class="btn btn-primary"
+                        style="margin-left: 35px; height: 41px; width: 335px; background: #ff5722">Submit
+                </button>
             </form>
         </div>
     </div>
 </div>
-<%--<div class = "container">--%>
-<%--    <h1>Login</h1>--%>
-<%--    <h2>--%>
-<%--        <a href="/accounts?action=create">Add Account</a>--%>
-<%--    </h2>--%>
-<%--    <form method="post">--%>
-<%--        <div class="mb-3">--%>
-<%--            <label class="form-label">Username</label>--%>
-<%--            <input type="email" class="form-control"  aria-describedby="emailHelp" name="username"></div>--%>
-<%--        <div class="mb-3">--%>
-<%--            <label  class="form-label">Password</label>--%>
-<%--            <input type="password" class="form-control" name="password">--%>
-<%--        </div>--%>
-<%--        <button type="submit" class="btn btn-primary">Submit</button>--%>
-<%--    </form>--%>
-<%--</div>--%>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>

@@ -4,7 +4,6 @@ package dao.role;
 import config.Config;
 import dao.IDao;
 import model.Role;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +29,9 @@ public class RoleDAO implements IRole {
 
     }
 
+
     @Override
+
     public List<Role> findAll() {
         Connection connection = getConnection();
         List<Role> roleList = new ArrayList<>();
@@ -80,5 +81,7 @@ public class RoleDAO implements IRole {
     public void remove(int id) {
 
     }
+
+
 }
 
