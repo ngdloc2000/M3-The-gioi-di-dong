@@ -23,6 +23,12 @@ public class Cart {
         this.status = status;
     }
 
+    public Cart(int idAccount, Date createDate, int status) {
+        this.idAccount = idAccount;
+        this.createDate = createDate;
+        this.status = status;
+    }
+
     public int getIdCart() {
         return idCart;
     }

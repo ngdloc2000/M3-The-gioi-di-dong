@@ -21,6 +21,7 @@ public class CartDetailDAO implements ICartDetailDAO {
     static final String FIND_ALL_CARTDetail_BY_IDCART = "select * from cartdetail where idCart = ?;";
     static String FIND_ALL_CARTDETAIL_BY_IDPRODUCT = "select * from cartdetail where idProduct = ?;";
 
+
     @Override
     public List<CartDetail> findAll() {
         List<CartDetail> list;
@@ -121,5 +122,7 @@ public class CartDetailDAO implements ICartDetailDAO {
         }
         return cartDetailList;
     }
+
+
 }
 

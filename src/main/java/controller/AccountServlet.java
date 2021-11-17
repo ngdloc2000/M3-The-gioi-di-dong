@@ -8,6 +8,7 @@ import dao.account.IAccount;
 import dao.role.IRole;
 import dao.role.RoleDAO;
 import model.Account;
+import model.Cart;
 import model.Role;
 
 import javax.servlet.*;
@@ -123,7 +124,7 @@ public class AccountServlet extends HttpServlet {
 //                }
                 SessionUtil.getInstance().putValue(request,"idUser",account.getIdUser());
                 try {
-                    response.sendRedirect("/products");
+                    response.sendRedirect("/guest");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -152,4 +153,5 @@ public class AccountServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
+
 }

@@ -1,7 +1,6 @@
 package dao.product;
 
 import config.Config;
-import config.Config;
 import dao.shop.IShopDAO;
 import dao.shop.ShopDAO;
 import dao.type.ITypeDAO;
@@ -70,7 +69,7 @@ public class ProductDAO implements IProduct{
             preparedStatement.setString(1,product.getNameProduct());
             preparedStatement.setInt(2,product.getPrice());
             preparedStatement.setInt(3,product.getQuantity());
-            preparedStatement.setString(4,product.getDescription());
+            preparedStatement.setString(4,product.getImage());
             preparedStatement.setInt(5,product.getIdType());
             preparedStatement.setInt(6,product.getIdShop());
             preparedStatement.executeUpdate();
@@ -118,7 +117,7 @@ public class ProductDAO implements IProduct{
             preparedStatement.setString(1, product.getNameProduct());
             preparedStatement.setInt(2,product.getPrice());
             preparedStatement.setInt(3,product.getQuantity());
-            preparedStatement.setString(4,product.getDescription());
+            preparedStatement.setString(4,product.getImage());
             preparedStatement.setInt(5,product.getIdType());
             preparedStatement.setInt(6,product.getIdShop());
             preparedStatement.setInt(7,id);

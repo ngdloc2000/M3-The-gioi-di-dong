@@ -1,0 +1,11 @@
+.name-account {
+    font-size: 14px;
+    color: #333;
+}
+
+#form-create-shop {
+    width: 397px;
+    background: white;
+    margin-left: 100px;
+    border-radius: 5px;
+}
