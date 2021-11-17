@@ -5,7 +5,7 @@ public class Product {
     private String nameProduct;
     private int price;
     private int quantity;
-    private String description;
+    private String image;
     private int idType;
     private Type type;
     private int idShop;
@@ -18,45 +18,45 @@ public class Product {
         return idProduct;
     }
 
-    public Product(int idProduct, String nameProduct, int price, int quantity, String description, Type type,int idShop) {
+    public Product(int idProduct, String nameProduct, int price, int quantity, String image, Type type, int idShop) {
         this.idProduct = idProduct;
         this.nameProduct = nameProduct;
         this.price = price;
         this.quantity = quantity;
-        this.description = description;
+        this.image = image;
         this.type = type;
         this.idShop = idShop;
 
     }
 
-    public Product(int idProduct, String nameProduct, int price, int quantity, String description, Type type, Shop shop) {
+    public Product(int idProduct, String nameProduct, int price, int quantity, String image, Type type, Shop shop) {
         this.idProduct = idProduct;
         this.nameProduct = nameProduct;
         this.price = price;
         this.quantity = quantity;
-        this.description = description;
+        this.image = image;
         this.type = type;
         this.shop = shop;
     }
 
-    public Product(int idProduct, String nameProduct, int price, int quantity, String description, int idType, Type type, int idShop, Shop shop) {
+    public Product(int idProduct, String nameProduct, int price, int quantity, String image, int idType, Type type, int idShop, Shop shop) {
         this.idProduct = idProduct;
         this.nameProduct = nameProduct;
         this.price = price;
         this.quantity = quantity;
-        this.description = description;
+        this.image = image;
         this.idType = idType;
         this.type = type;
         this.idShop = idShop;
         this.shop = shop;
     }
 
-    public Product(String nameProduct, int price, int quantity, String description, int idType) {
+    public Product(String nameProduct, int price, int quantity, String image, int idType) {
 
         this.nameProduct = nameProduct;
         this.price = price;
         this.quantity = quantity;
-        this.description = description;
+        this.image = image;
         this.idType = idType;
     }
 
@@ -96,12 +96,12 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public String getDescription() {
-        return description;
+    public String getImage() {
+        return image;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public Type getType() {

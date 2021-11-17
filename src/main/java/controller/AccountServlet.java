@@ -124,7 +124,7 @@ public class AccountServlet extends HttpServlet {
 //                }
                 SessionUtil.getInstance().putValue(request,"idUser",account.getIdUser());
                 try {
-                    response.sendRedirect("/shops");
+                    response.sendRedirect("/guest");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
