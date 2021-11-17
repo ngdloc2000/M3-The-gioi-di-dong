@@ -1,7 +1,12 @@
 package controller;
 
+<<<<<<< HEAD
 import dao.product.ProductDAO;
 import model.Product;
+=======
+import config.SessionUtil;
+import model.Account;
+>>>>>>> khanh
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -18,6 +23,7 @@ public class ProductServlet extends HttpServlet {
     ProductDAO productDAO = new ProductDAO();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+<<<<<<< HEAD
         String action = request.getParameter("action");
         switch (action){
             case "add":
@@ -33,6 +39,9 @@ public class ProductServlet extends HttpServlet {
                 removeProductByID(request,response);
             default: showAllProduct(request,response);
         }
+=======
+        int i = (int) SessionUtil.getInstance().getValue(request,"idUser");
+>>>>>>> khanh
     }
 
     @Override

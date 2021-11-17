@@ -18,13 +18,16 @@
     <h2>
         <a href="/accounts?action=create">Add Account</a>
     </h2>
-    <form method="post">
+    <form method="post" action="/accounts">
         <div class="mb-3">
             <label class="form-label">Username</label>
-            <input type="email" class="form-control"  aria-describedby="emailHelp" name="username"></div>
+            <input type="text" class="form-control"  aria-describedby="emailHelp" name="username"></div>
         <div class="mb-3">
             <label  class="form-label">Password</label>
             <input type="password" class="form-control" name="password">
+        </div>
+        <div class="mb-3">
+<%--            <input  name="action" value="login" hidden>--%>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
