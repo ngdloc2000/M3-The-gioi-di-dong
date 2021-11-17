@@ -1,6 +1,6 @@
 package dao.cartDetail;
 
-import Config.Config;
+import config.Config;
 import model.Cart;
 import model.CartDetail;
 import model.Type;
