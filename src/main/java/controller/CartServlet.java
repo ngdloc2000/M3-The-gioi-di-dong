@@ -37,6 +37,7 @@ public class CartServlet extends HttpServlet {
                 break;
             case "remove":
                 removeCartByID(request,response);
+
             default: showAllCart(request,response);
         }
     }

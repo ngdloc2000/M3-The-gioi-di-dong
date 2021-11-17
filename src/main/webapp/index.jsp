@@ -17,6 +17,7 @@
   </head>
   <body>
   <c:redirect url="product/showProduct.jsp"/>
+  <c:forEach items="" var=""
   $END$
   </body>
 </html>
