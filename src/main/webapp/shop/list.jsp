@@ -28,11 +28,13 @@
     <div class="container-fluid d-flex justify-content-between">
         <div class="wrap1 d-flex">
             <div>
-                <img id="logo"
-                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Shopee.svg/2560px-Shopee.svg.png">
+                <a href="/shops">
+                    <img id="logo"
+                         src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Shopee.svg/2560px-Shopee.svg.png">
+                </a>
             </div>
             <div style="font-size: 24px; color: #222; margin-top: 28px">
-                Kênh chủ shop
+                Kênh người bán
             </div>
         </div>
 
@@ -48,17 +50,18 @@
     <div class="container-fluid">
         <div class="container">
             <h1 class="text-center mb-5">DANH SÁCH SHOP ĐANG QUẢN LÝ</h1>
-            <p>Tổng số lượng shop đang quản lý: ${total}</p>
+            <div class="d-flex justify-content-around">
+                <p>Tổng số lượng shop đang quản lý: ${total}</p>
+                <a href="/shops?action=create" style="color: #ee4d2d">Đăng ký mở shop bán hàng</a>
+            </div>
             <c:forEach items="${shoplist}" var="shop">
                 <div class="card text-center mb-3">
                     <div class="card-body">
                         <h5 class="card-title">${shop.nameShop}</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <a href="/shops?action=shopDetail&idShop=${shop.idShop}" class="btn btn-primary">Bấm để xem</a>
                     </div>
                 </div>
             </c:forEach>
-
         </div>
     </div>
 </div>
