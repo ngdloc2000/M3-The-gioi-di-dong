@@ -1,5 +1,5 @@
 build
 .gradle
-src/main/java/config
+src/main/java/config/Config.java
 .idea/dataSources.xml
 .gitignore
