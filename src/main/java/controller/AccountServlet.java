@@ -26,18 +26,7 @@ public class AccountServlet extends HttpServlet {
         if (action == null) {
             action = "";
         }
-<<<<<<< HEAD
-        try {
-            switch (action) {
-                case "show":
-                    break;
-                default:
-                    listRole(request, response);
-                    break;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-=======
+
         switch (action){
             case "create":
                 showCreateForm(request,response);
@@ -48,7 +37,7 @@ public class AccountServlet extends HttpServlet {
             default:
                 showLoginForm(request,response);
                 break;
->>>>>>> khanh
+
         }
 
     }
@@ -108,9 +97,6 @@ public class AccountServlet extends HttpServlet {
                 break;
         }
     }
-
-<<<<<<< HEAD
-=======
     private void login(HttpServletRequest request, HttpServletResponse response) {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -166,5 +152,4 @@ public class AccountServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
->>>>>>> khanh
 }
