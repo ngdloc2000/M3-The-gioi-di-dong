@@ -1,5 +1,5 @@
 package dao.type;
-import config.Config;
+import Config.Config;
 import model.Type;
 
 import java.sql.*;
