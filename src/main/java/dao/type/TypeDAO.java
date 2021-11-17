@@ -1,4 +1,5 @@
 package dao.type;
+import config.Config;
 import model.Type;
 
 import java.sql.*;
@@ -50,8 +51,8 @@ return list;
     public void add(Type type) {
         Connection connection=null;
         try{
-            Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection(jdbcURL,jdbcUsername,jdbcPassword);
+            Class.forName(Config.CLASS_FOR_NAME);
+            connection = DriverManager.getConnection(Config.MYSQL,Config.USERNAME,Config.PASSWORD);
             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_NEW_TYPE);
             preparedStatement.setString(1, type.getName());
             preparedStatement.executeUpdate();
