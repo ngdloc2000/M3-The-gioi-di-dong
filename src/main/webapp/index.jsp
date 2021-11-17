@@ -16,7 +16,7 @@
     <title>$Title$</title>
   </head>
   <body>
-  <c:redirect url="product/showProduct.jsp"/>
+  <c:redirect url="/accounts"/>
   $END$
   </body>
 </html>

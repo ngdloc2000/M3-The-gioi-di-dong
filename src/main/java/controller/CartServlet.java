@@ -1,5 +1,6 @@
 package controller;
 
+import config.SessionUtil;
 import dao.cart.CartDAO;
 import dao.cart.ICartDao;
 import dao.product.IProduct;
@@ -12,21 +13,25 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @WebServlet(name = "CartServlet", value = "/carts")
 public class CartServlet extends HttpServlet {
 
-    public static final String SHOW_ALL_CART_JSP = "/showAllCart.jsp";
+    public static final String SHOW_ALL_CART_JSP = "cart/ShowAllCart.jsp";
+    public int idUser;
     IProduct productDAO = new ProductDAO();
-
     ICartDao cartDAO = new CartDAO();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
+        if(action == null){
+            action = "";
+        }
         switch (action){
             case "add":
-                addCart(request,response);
+                showFormAddCart(request,response);
                 break;
             case "find":
                 findCartById(request,response);
@@ -40,15 +45,57 @@ public class CartServlet extends HttpServlet {
         }
     }
 
+    private void showFormAddCart(HttpServletRequest request, HttpServletResponse response) {
+        idUser = (int) SessionUtil.getInstance().getValue(request,"idUser");
+        List<Cart> list =cartDAO.findAllCartByIdAccount(idUser);
+        if(list.size() == 0){
+            long millis=System.currentTimeMillis();
+            java.sql.Date date=new java.sql.Date(millis);
+            cartDAO.add(new Cart(idUser, date,0));
+        }
+        else {
+            int idCart = cartDAO.findIdCartCartForIdAccount(list);
+            if(idCart == -1){
+                long millis=System.currentTimeMillis();
+                java.sql.Date date=new java.sql.Date(millis);
+                cartDAO.add(new Cart(idUser, date,0));
+            }
+            else {
+                Cart cart = cartDAO.findById(idCart);
+                request.setAttribute("card",cart);
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("");
+                try {
+                    requestDispatcher.forward(request,response);
+                } catch (ServletException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+
+        }
+    }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
+        if(action == null){
+            action = "";
+        }
         switch (action){
             case "add":
+                addCart(request,response);
+                break;
             case "find":
+                findCartById(request,response);
+                break;
             case "update":
+                updateCartById(request,response);
+                break;
             case "remove":
-            default:
+                removeCartByID(request,response);
+            default: showAllCart(request,response);
         }
     }
 

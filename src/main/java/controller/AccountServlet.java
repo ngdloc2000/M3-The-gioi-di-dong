@@ -8,6 +8,7 @@ import dao.account.IAccount;
 import dao.role.IRole;
 import dao.role.RoleDAO;
 import model.Account;
+import model.Cart;
 import model.Role;
 
 import javax.servlet.*;
@@ -152,4 +153,5 @@ public class AccountServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
+
 }

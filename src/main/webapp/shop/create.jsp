@@ -11,6 +11,10 @@
     <title>Title</title>
 </head>
 <body>
-
+<form action="post">
+    <label>Shop Name</label>
+    <input type="text" name = "name">
+    <button type="submit"></button>
+</form>
 </body>
 </html>
