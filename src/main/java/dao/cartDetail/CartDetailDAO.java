@@ -4,7 +4,7 @@ import model.CartDetail;
 
 import java.util.List;
 
-public class CartDAO implements ICartDAO{
+public class CartDetailDAO implements ICartDetailDAO {
     @Override
     public List<CartDetail> findAll() {
         return null;
