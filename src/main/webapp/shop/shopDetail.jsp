@@ -47,48 +47,49 @@
 
 <div id="main-secsion">
     <div class="container-fluid d-flex justify-content-between">
-        <div id="sidebar-menu" style="width: 20%; height: 100%;">asa</div>
+        <div id="sidebar-menu" style="width: 20%; height: 100%;"></div>
         <div id="content" style="width: 79%; height: 100%;">
             <div class="container-fluid">
                 <div class="row text-center mt-5 mb-5">
                     <h1 class="text-title">Tất cả sản phẩm</h1>
                 </div>
-<%--                <div class="mb-3 d-flex justify-content-end align-items-center">--%>
-<%--                    <span style="width: 90px">Thể loại</span>--%>
-<%--                    <div class="dropdown">--%>
-<%--                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"--%>
-<%--                                data-bs-toggle="dropdown" aria-expanded="false">--%>
-<%--                            Chọn thể loại--%>
-<%--                        </button>--%>
-<%--                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">--%>
-<%--                            <c:forEach items="${listType}" var="type">--%>
-<%--                                <li>--%>
-<%--                                    <a class="dropdown-item"--%>
-<%--                                       href="/blogs?action=selectBlogByType&id=${type.id}">${type.name}--%>
-<%--                                    </a>--%>
-<%--                                </li>--%>
-<%--                            </c:forEach>--%>
-<%--                        </ul>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
+                <%--                <div class="mb-3 d-flex justify-content-end align-items-center">--%>
+                <%--                    <span style="width: 90px">Thể loại</span>--%>
+                <%--                    <div class="dropdown">--%>
+                <%--                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"--%>
+                <%--                                data-bs-toggle="dropdown" aria-expanded="false">--%>
+                <%--                            Chọn thể loại--%>
+                <%--                        </button>--%>
+                <%--                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">--%>
+                <%--                            <c:forEach items="${listType}" var="type">--%>
+                <%--                                <li>--%>
+                <%--                                    <a class="dropdown-item"--%>
+                <%--                                       href="/blogs?action=selectBlogByType&id=${type.id}">${type.name}--%>
+                <%--                                    </a>--%>
+                <%--                                </li>--%>
+                <%--                            </c:forEach>--%>
+                <%--                        </ul>--%>
+                <%--                    </div>--%>
+                <%--                </div>--%>
                 <div class="row">
                     <c:forEach var="product" items="${productList}">
                         <div class="col-md-4 col-sm-6 mb-5">
                             <div class="card" style="width: 100%;">
-                                <img src="..." class="card-img-top" style="height: 200px">
+                                <img src="${product.image}" class="card-img-top" style="height: 200px">
                                 <div class="card-body text-center">
                                     <h5 class="card-title text-center">${product.nameProduct}</h5>
                                     <div class="d-flex justify-content-around mt-2 mb-3">
-                                <span>
-                                    <i class="fas fa-calendar-alt text-primary" style="margin-right: 10px"></i>
-                                        ${blog.date}
-                                </span> <br>
-                                        <span>
-                                    <i class="fas fa-keyboard text-primary" style="margin-right: 10px"></i>
-                                        ${blog.typeBlog.name}
-                                </span> <br>
+<%--                                <span>--%>
+<%--                                    <i class="fas fa-calendar-alt text-primary" style="margin-right: 10px"></i>--%>
+<%--                                        ${blog.date}--%>
+<%--                                </span> <br>--%>
+<%--                                        <span>--%>
+<%--                                    <i class="fas fa-keyboard text-primary" style="margin-right: 10px"></i>--%>
+<%--                                        ${blog.typeBlog.name}--%>
+<%--                                </span> <br>--%>
                                     </div>
-                                    <a href="#" class="btn btn-primary">Xem bài viết</a>
+                                    <a href="#" class="btn btn-primary">Sửa sản phẩm</a>
+                                    <a href="#" class="btn btn-primary">Xóa sản phẩm</a>
                                 </div>
                             </div>
                         </div>
