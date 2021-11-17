@@ -49,7 +49,7 @@
                     Đăng nhập</p>
                 <div class="mb-5" style="margin-left: 35px; height: 41px; width: 335px;">
                     <label for="exampleInputEmail1" class="form-label">Username</label>
-                    <input name="username" type="email" class="form-control" id="exampleInputEmail1"
+                    <input name="username" type="text" class="form-control" id="exampleInputEmail1"
                            aria-describedby="emailHelp">
                 </div>
                 <div class="mb-5" style="margin-left: 35px; height: 41px; width: 335px;">
