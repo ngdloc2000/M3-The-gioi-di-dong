@@ -1,5 +1,7 @@
 package model;
 
+import dao.cartDetail.CartDetailDAO;
+import dao.cartDetail.ICartDetailDAO;
 import dao.product.IProduct;
 import dao.product.ProductDAO;
 
@@ -7,9 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Cart {
-<<<<<<< HEAD
 
-=======
     private int idCart ;
     private int idAccount;
     private Date createDate;
@@ -58,13 +58,13 @@ public class Cart {
 
     public List<Product> getProductList() {
         IProduct product = new ProductDAO();
-        ICartDetailDAO cartDetail = new CartDetailDAO();
-        CartDetail cartDetail = cartDetail.findById(idCart);
+        ICartDetailDAO cartDetailDAO = new CartDetailDAO();
+        CartDetail cartDetail1 = cartDetailDAO.findById(idCart);
         List<Product> productList = product.findById();
     }
 
     public void setProductList(List<Product> productList) {
         this.productList = productList;
     }
->>>>>>> 22194473ff77c78029eb281bfdd8f6b53bca82c9
+
 }

@@ -3,6 +3,7 @@ package dao.cartDetail;
 import config.Config;
 import model.Cart;
 import model.CartDetail;
+import model.Product;
 import model.Type;
 
 import java.sql.*;
@@ -17,6 +18,8 @@ public class CartDetailDAO implements ICartDetailDAO {
     private static final String DELETE_CartDetailDao_SQL = "delete from cartdetail where idCart = ? and idProduct?;";
     private static final String UPDATE_CartDetailDao_SQL = "update cartdetail set number = ? where idCart = ? and idProduct?;";
     private static final String FIND_ALL_CartDetailDao = "select * from cartdetail";
+    static final String FIND_ALL_CARTDetail_BY_IDCART = "select * from cartdetail where idCart = ?;";
+    static String FIND_ALL_CARTDETAIL_BY_IDPRODUCT = "select * from cartdetail where idProduct = ?;";
 
     @Override
     public List<CartDetail> findAll() {
@@ -81,4 +84,42 @@ public class CartDetailDAO implements ICartDetailDAO {
     public void remove(int id) {
 
     }
+    public List<CartDetail> findAllCartDetailByIdCart(int idCart){
+        List<CartDetail> cartDetailList = new ArrayList<>();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection connection = DriverManager.getConnection(Config.MYSQL,Config.USERNAME,Config.PASSWORD);
+            PreparedStatement ps = connection.prepareStatement(FIND_ALL_CARTDetail_BY_IDCART);
+            ps.setInt(1,idCart);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                int idProduct = rs.getInt("idProduct");
+                int number = rs.getInt("number");
+                cartDetailList.add(new CartDetail(idCart,idProduct,number));
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+        return cartDetailList;
+    }
+
+    public List<CartDetail> findAllCartDetailByIdProduct(int idProduct){
+        List<CartDetail> cartDetailList = new ArrayList<>();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection connection = DriverManager.getConnection(Config.MYSQL,Config.USERNAME,Config.PASSWORD);
+            PreparedStatement ps = connection.prepareStatement(FIND_ALL_CARTDETAIL_BY_IDPRODUCT);
+            ps.setInt(1,idProduct);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                int idCart = rs.getInt("idCart");
+                int number = rs.getInt("number");
+                cartDetailList.add(new CartDetail(idCart,idProduct,number));
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+        return cartDetailList;
+    }
 }
+
