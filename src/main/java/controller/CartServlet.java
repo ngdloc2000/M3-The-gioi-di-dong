@@ -2,6 +2,8 @@ package controller;
 
 import dao.cart.CartDAO;
 import dao.cart.ICartDao;
+import dao.product.IProduct;
+import dao.product.ProductDAO;
 import model.Cart;
 import model.Product;
 
@@ -16,7 +18,7 @@ import java.util.List;
 public class CartServlet extends HttpServlet {
 
     public static final String SHOW_ALL_CART_JSP = "/showAllCart.jsp";
-
+    IProduct productDAO = new ProductDAO();
 
     ICartDao cartDAO = new CartDAO();
     @Override

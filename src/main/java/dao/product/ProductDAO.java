@@ -1,7 +1,9 @@
 package dao.product;
 
-import Config.Config;
 import config.Config;
+import config.Config;
+import dao.shop.IShopDAO;
+import dao.shop.ShopDAO;
 import dao.type.ITypeDAO;
 import dao.type.TypeDAO;
 import model.Product;

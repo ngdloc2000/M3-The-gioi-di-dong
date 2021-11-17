@@ -1,12 +1,9 @@
 package controller;
 
-<<<<<<< HEAD
+
 import dao.product.ProductDAO;
 import model.Product;
-=======
-import config.SessionUtil;
-import model.Account;
->>>>>>> khanh
+
 
 import javax.servlet.*;
 import javax.servlet.http.*;

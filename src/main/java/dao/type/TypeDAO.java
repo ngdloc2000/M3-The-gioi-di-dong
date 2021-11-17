@@ -1,5 +1,5 @@
 package dao.type;
-import Config.Config;
+import config.Config;
 import model.Type;
 
 import java.sql.*;
@@ -8,9 +8,6 @@ import java.util.List;
 
 public class TypeDAO implements ITypeDAO {
     private List<Type> list;
-    private String jdbcURL = "jdbc:mysql://localhost:3306/casestudym3";
-    private String jdbcUsername = "root";
-    private String jdbcPassword = "12345678";
 
     private static final String SELECT_TYPE_BY_ID = "select idType,nameType from type where idType =?;";
     private static final String INSERT_NEW_TYPE = "insert into type(nameType) VALUE (?);";
@@ -27,7 +24,7 @@ public TypeDAO(){
         list = new ArrayList<>();
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection(jdbcURL,jdbcUsername,jdbcPassword);
+            connection = DriverManager.getConnection(Config.MYSQL,Config.USERNAME,Config.PASSWORD);
             PreparedStatement preparedStatement = connection.prepareStatement(FIND_ALL_TYPE);
             ResultSet resultSet = preparedStatement.executeQuery();
             System.out.println(preparedStatement);
@@ -70,7 +67,7 @@ return list;
         Type type  = null;
  try{
          Class.forName("com.mysql.jdbc.Driver");
-         connection = DriverManager.getConnection(jdbcURL,jdbcUsername,jdbcPassword);
+     connection = DriverManager.getConnection(Config.MYSQL,Config.USERNAME,Config.PASSWORD);
          PreparedStatement preparedStatement = connection.prepareStatement(SELECT_TYPE_BY_ID);
          preparedStatement.setInt(1, id);
          ResultSet resultSet = preparedStatement.executeQuery();
@@ -92,7 +89,7 @@ return list;
         Connection connection = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
+            connection = DriverManager.getConnection(Config.MYSQL,Config.USERNAME,Config.PASSWORD);
             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_TYPE_SQL);
             preparedStatement.setString(1, type.getName());
             preparedStatement.setInt(2, id);
@@ -109,7 +106,7 @@ return list;
         Connection connection = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
+            connection = DriverManager.getConnection(Config.MYSQL,Config.USERNAME,Config.PASSWORD);
             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_TYPE_SQL);
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();

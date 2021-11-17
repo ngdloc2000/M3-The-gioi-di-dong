@@ -60,7 +60,8 @@ public class Cart {
         IProduct product = new ProductDAO();
         ICartDetailDAO cartDetailDAO = new CartDetailDAO();
         CartDetail cartDetail1 = cartDetailDAO.findById(idCart);
-        List<Product> productList = product.findById();
+        //List<Product> productList = product.findById();
+        return null;
     }
 
     public void setProductList(List<Product> productList) {
