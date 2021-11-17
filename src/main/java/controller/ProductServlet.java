@@ -15,14 +15,17 @@ import java.util.List;
 @WebServlet(name = "ProductServlet", value = "/products")
 public class ProductServlet extends HttpServlet {
 
-    public static final String SHOW_PRODUCT_JSP = "product/showProduct.jsp";
+    public static final String SHOW_PRODUCT_JSP = "/product/showProduct.jsp";
+
 
     ProductDAO productDAO = new ProductDAO();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
-        if(action == null){
-            action = "";
+
+        if(action ==null){
+            action ="";
+
         }
         switch (action){
             case "add":
