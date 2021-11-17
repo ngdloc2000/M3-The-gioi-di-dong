@@ -94,9 +94,9 @@ public class ProductDAO implements IProduct{
             int quantity = rs.getInt("quantity");
             String description = rs.getString("description");
             int idType = rs.getInt("idType");
-            Type type = typeDAO.findTypeById(idType);
+            Type type = typeDAO.findById(idType);
             int idShop = rs.getInt("idShop");
-            Shop shop = shopDAO.findShopById(idShop);
+            Shop shop = shopDAO.findById(idShop);
             product = new Product(id, nameProduct,price,quantity,description,idType,type,idShop,shop);
             rs.close();
             preparedStatement.close();
