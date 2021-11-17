@@ -1,0 +1,23 @@
+#logo {
+    height: 39px;
+    width: 123px;
+    margin-top: 20px;
+    margin-right: 15px;
+}
+
+#header .container {
+    width: 1200px;
+}
+
+#wrap {
+    height: 100%;
+    width: 1040px;
+}
+
+#form-login {
+    width: 397px;
+    height: 482px;
+    background: white;
+    margin-left: 100px;
+    border-radius: 5px;
+}
