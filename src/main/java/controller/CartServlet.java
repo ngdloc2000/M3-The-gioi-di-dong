@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "ProductServlet", value = "/carts")
+@WebServlet(name = "CartServlet", value = "/carts")
 public class CartServlet extends HttpServlet {
 
     public static final String SHOW_ALL_CART_JSP = "/showAllCart.jsp";
