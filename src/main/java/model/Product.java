@@ -1,5 +1,8 @@
 package model;
 
+import dao.rate.IRateDAO;
+import dao.rate.RateDAO;
+
 public class Product {
     private int idProduct;
     private String nameProduct;
@@ -10,6 +13,7 @@ public class Product {
     private Type type;
     private int idShop;
     private Shop shop;
+
     public Product(){}
 
     public int getIdProduct() {
@@ -56,6 +60,7 @@ public class Product {
         this.type = type;
         this.idShop = idShop;
         this.shop = shop;
+
     }
 
     public Product(String nameProduct, int price, int quantity, String image, int idType) {
@@ -66,6 +71,7 @@ public class Product {
         this.image = image;
         this.idType = idType;
     }
+
 
     public int getIdType() {
         return idType;
@@ -134,4 +140,11 @@ public class Product {
     public void setShop(Shop shop) {
         this.shop = shop;
     }
+
+    public int getAvgRate() {
+        IRateDAO rateDAO = new RateDAO();
+        return rateDAO.findAVGRateByIdProduct(idProduct);
+    }
+
+
 }

@@ -59,14 +59,18 @@ public class CartDAO implements ICartDao {
 
     @Override
     public void add(Cart cart) {
+        Connection connection = getConnection();
         try {
-            PreparedStatement ps = getConnection().prepareStatement(ADD_CART);
+
+            PreparedStatement ps = connection.prepareStatement(ADD_CART);
             ps.setInt(1,cart.getIdAccount());
             ps.setDate(2, (Date) cart.getCreateDate());
             ps.setInt(3,cart.getStatus());
             ps.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
+
         }
     }
     @Override
