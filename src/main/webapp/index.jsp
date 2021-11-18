@@ -15,7 +15,7 @@
     <title>$Title$</title>
   </head>
   <body>
+
   <c:redirect url="/accounts"/>
-  $END$
   </body>
 </html>

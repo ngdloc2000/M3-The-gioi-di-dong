@@ -34,7 +34,7 @@ CREATE TABLE `account` (
   UNIQUE KEY `username` (`username`),
   KEY `idRole` (`idRole`),
   CONSTRAINT `account_ibfk_1` FOREIGN KEY (`idRole`) REFERENCES `role` (`idRole`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,6 +43,7 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
+INSERT INTO `account` VALUES (1,'an','1','1',1),(2,'loc','2','2',2),(3,'khanh','3','3',1),(4,'y','4','4',2);
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -61,7 +62,7 @@ CREATE TABLE `cart` (
   PRIMARY KEY (`idCart`),
   KEY `idAccount` (`idAccount`),
   CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`idAccount`) REFERENCES `account` (`idAccount`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,6 +71,7 @@ CREATE TABLE `cart` (
 
 LOCK TABLES `cart` WRITE;
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
+INSERT INTO `cart` VALUES (1,2,'2021-11-11',1),(2,4,'2021-11-18',0),(3,2,'2021-11-15',0),(4,4,'2021-11-08',1);
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -133,6 +135,37 @@ LOCK TABLES `product` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `rate`
+--
+
+DROP TABLE IF EXISTS `rate`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `rate` (
+  `idRate` int NOT NULL AUTO_INCREMENT,
+  `idAccount` int DEFAULT NULL,
+  `idProduct` int DEFAULT NULL,
+  `comment` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `rate` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`idRate`),
+  KEY `idAccount` (`idAccount`),
+  KEY `idProduct` (`idProduct`),
+  CONSTRAINT `rate_ibfk_1` FOREIGN KEY (`idAccount`) REFERENCES `account` (`idAccount`),
+  CONSTRAINT `rate_ibfk_2` FOREIGN KEY (`idProduct`) REFERENCES `product` (`idProduct`),
+  CONSTRAINT `rate_chk_1` CHECK (((`rate` >= 0) and (`rate` <= 5)))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `rate`
+--
+
+LOCK TABLES `rate` WRITE;
+/*!40000 ALTER TABLE `rate` DISABLE KEYS */;
+/*!40000 ALTER TABLE `rate` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `role`
 --
 
@@ -170,7 +203,7 @@ CREATE TABLE `shop` (
   PRIMARY KEY (`idShop`),
   KEY `idAccount` (`idAccount`),
   CONSTRAINT `shop_ibfk_1` FOREIGN KEY (`idAccount`) REFERENCES `account` (`idAccount`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -179,6 +212,7 @@ CREATE TABLE `shop` (
 
 LOCK TABLES `shop` WRITE;
 /*!40000 ALTER TABLE `shop` DISABLE KEYS */;
+INSERT INTO `shop` VALUES (1,'Xuan Anh',1),(2,'Xuan anh 2',1);
 /*!40000 ALTER TABLE `shop` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -214,4 +248,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-16 16:27:01
+-- Dump completed on 2021-11-18  9:14:46

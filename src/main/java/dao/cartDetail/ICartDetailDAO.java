@@ -7,5 +7,4 @@ import model.CartDetail;
 import java.util.List;
 
 public interface ICartDetailDAO extends IDao<CartDetail> {
-
 }
