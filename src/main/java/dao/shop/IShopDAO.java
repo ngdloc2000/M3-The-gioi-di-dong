@@ -1,6 +1,7 @@
 package dao.shop;
 
 import dao.IDao;
+import model.Cart;
 import model.Product;
 import model.Shop;
 
@@ -12,4 +13,12 @@ public interface IShopDAO extends IDao<Shop> {
     int totalShopByIdUser(int idUser);
 
     List<Product> findAllProductsByShopAndUser(int idUser, int idShop);
+
+    void createProductToShop(Product product);
+
+    void updateProductOfShop(int idProduct, int idUser);
+
+    void removeProductOfShop(int idProduct);
+
+    List<Cart> findAllCartsByIdShop(int idShop);
 }

@@ -19,7 +19,6 @@ public class CartDAO implements ICartDao {
             " where idCart = ? ;";
     final String DELETE_BY_ID = "delete from cart where idCart = ?";
 
-
     private ICartDetailDAO cartDetailDAO = new CartDetailDAO();
     private Connection connection = null;
     private Connection getConnection(){
