@@ -3,16 +3,15 @@ package controller;
 import config.SessionUtil;
 import dao.account.AccountDAO;
 import dao.account.IAccount;
+import dao.cartDetail.CartDetailDAO;
+import dao.cartDetail.ICartDetailDAO;
 import dao.product.IProduct;
 import dao.product.ProductDAO;
 import dao.shop.IShopDAO;
 import dao.shop.ShopDAO;
 import dao.type.ITypeDAO;
 import dao.type.TypeDAO;
-import model.Account;
-import model.Product;
-import model.Shop;
-import model.Type;
+import model.*;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -25,6 +24,7 @@ public class ShopServlet extends HttpServlet {
     IShopDAO shopDAO = new ShopDAO();
     IAccount accountDAO = new AccountDAO();
     ITypeDAO typeDAO = new TypeDAO();
+    ICartDetailDAO cartDetailDAO = new CartDetailDAO();
     int idUser;
 
     @Override
@@ -52,6 +52,13 @@ public class ShopServlet extends HttpServlet {
                 break;
             case "deleteProduct":
                 deleteProduct(request, response);
+                break;
+            case "showAllCart":
+                showAllCart(request, response);
+                break;
+            case "showCartDetail":
+                showCartDetail(request, response);
+                break;
             default:
                 showShopForm(request, response);
                 break;
@@ -77,6 +84,14 @@ public class ShopServlet extends HttpServlet {
             default:
                 break;
         }
+    }
+
+    private void showAllCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int idShop = Integer.parseInt(request.getParameter("idShop"));
+        List<Cart> cartList = this.shopDAO.findAllCartsByIdShop(idShop);
+        request.setAttribute("cartList", cartList);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("shop/listCart.jsp");
+        dispatcher.forward(request, response);
     }
 
     private void deleteProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -114,6 +129,7 @@ public class ShopServlet extends HttpServlet {
         Shop shop = shopDAO.findById(idShop);
         Product product = new Product(name, price, quantity, image, type, shop);
         shopDAO.createProductToShop(product);
+        request.setAttribute("shop", shop);
         RequestDispatcher dispatcher = request.getRequestDispatcher("shop/createProduct.jsp");
         dispatcher.forward(request, response);
     }
@@ -173,5 +189,10 @@ public class ShopServlet extends HttpServlet {
         request.setAttribute("productList", productList);
         RequestDispatcher dispatcher = request.getRequestDispatcher("shop/shopDetail.jsp");
         dispatcher.forward(request, response);
+    }
+
+    private void showCartDetail(HttpServletRequest request, HttpServletResponse response) {
+        int idCart = Integer.parseInt(request.getParameter("idCart"));
+        CartDetail cartDetail = cartDetailDAO.findById(idCart);
     }
 }

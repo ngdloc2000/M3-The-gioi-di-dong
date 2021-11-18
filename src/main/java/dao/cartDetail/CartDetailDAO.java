@@ -26,19 +26,19 @@ public class CartDetailDAO implements ICartDetailDAO {
     public List<CartDetail> findAll() {
         List<CartDetail> list;
         System.out.println(FIND_ALL_CartDetailDao);
-        Connection connection=null;
+        Connection connection = null;
         list = new ArrayList<>();
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection(Config.MYSQL,Config.USERNAME,Config.PASSWORD);
+            connection = DriverManager.getConnection(Config.MYSQL, Config.USERNAME, Config.PASSWORD);
             PreparedStatement preparedStatement = connection.prepareStatement(FIND_ALL_CartDetailDao);
             ResultSet resultSet = preparedStatement.executeQuery();
             System.out.println(preparedStatement);
-            while(resultSet.next()){
+            while (resultSet.next()) {
                 int idCart = resultSet.getInt("idCart");
                 int idProduct = resultSet.getInt("idProduct");
-                int number =resultSet.getInt("number");
-                CartDetail cartDetail = new CartDetail(idCart,idProduct,number);
+                int number = resultSet.getInt("number");
+                CartDetail cartDetail = new CartDetail(idCart, idProduct, number);
 
                 list.add(cartDetail);
             }
@@ -55,18 +55,18 @@ public class CartDetailDAO implements ICartDetailDAO {
 
     @Override
     public void add(CartDetail cartDetail) {
-        Connection connection=null;
-        try{
+        Connection connection = null;
+        try {
             Class.forName(Config.CLASS_FOR_NAME);
-            connection = DriverManager.getConnection(Config.MYSQL,Config.USERNAME,Config.PASSWORD);
+            connection = DriverManager.getConnection(Config.MYSQL, Config.USERNAME, Config.PASSWORD);
             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_NEW_CartDetailDao);
-            preparedStatement.setInt(1,cartDetail.getIdCart());
-            preparedStatement.setInt(2,cartDetail.getIdProduct());
-            preparedStatement.setInt(3,cartDetail.getNumber());
+            preparedStatement.setInt(1, cartDetail.getIdCart());
+            preparedStatement.setInt(2, cartDetail.getIdProduct());
+            preparedStatement.setInt(3, cartDetail.getNumber());
             preparedStatement.executeUpdate();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -85,18 +85,19 @@ public class CartDetailDAO implements ICartDetailDAO {
     public void remove(int id) {
 
     }
-    public List<CartDetail> findAllCartDetailByIdCart(int idCart){
+
+    public List<CartDetail> findAllCartDetailByIdCart(int idCart) {
         List<CartDetail> cartDetailList = new ArrayList<>();
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection(Config.MYSQL,Config.USERNAME,Config.PASSWORD);
+            Connection connection = DriverManager.getConnection(Config.MYSQL, Config.USERNAME, Config.PASSWORD);
             PreparedStatement ps = connection.prepareStatement(FIND_ALL_CARTDetail_BY_IDCART);
-            ps.setInt(1,idCart);
+            ps.setInt(1, idCart);
             ResultSet rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 int idProduct = rs.getInt("idProduct");
                 int number = rs.getInt("number");
-                cartDetailList.add(new CartDetail(idCart,idProduct,number));
+                cartDetailList.add(new CartDetail(idCart, idProduct, number));
             }
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
@@ -104,18 +105,18 @@ public class CartDetailDAO implements ICartDetailDAO {
         return cartDetailList;
     }
 
-    public List<CartDetail> findAllCartDetailByIdProduct(int idProduct){
+    public List<CartDetail> findAllCartDetailByIdProduct(int idProduct) {
         List<CartDetail> cartDetailList = new ArrayList<>();
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection(Config.MYSQL,Config.USERNAME,Config.PASSWORD);
+            Connection connection = DriverManager.getConnection(Config.MYSQL, Config.USERNAME, Config.PASSWORD);
             PreparedStatement ps = connection.prepareStatement(FIND_ALL_CARTDETAIL_BY_IDPRODUCT);
-            ps.setInt(1,idProduct);
+            ps.setInt(1, idProduct);
             ResultSet rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 int idCart = rs.getInt("idCart");
                 int number = rs.getInt("number");
-                cartDetailList.add(new CartDetail(idCart,idProduct,number));
+                cartDetailList.add(new CartDetail(idCart, idProduct, number));
             }
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();

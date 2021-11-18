@@ -2,8 +2,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: ADMIN
-  Date: 17-Nov-21
-  Time: 8:30 PM
+  Date: 18-Nov-21
+  Time: 11:06 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -71,26 +71,36 @@
              style="width: 79%; height: 100%; background: white; margin-top: 10px; box-shadow: 0 1px 4px 0 darkgrey;">
             <div class="container-fluid">
                 <div class="row text-center mt-5 mb-5">
-                    <h1 class="text-title">Tất cả sản phẩm</h1>
+                    <h1 class="text-title">Tất cả đơn hàng</h1>
                 </div>
-                <a href="/shops?action=createProductToShop&idShop=${shop.idShop}" class="btn mb-3" style="color: white">
-                    <i class="fas fa-plus-circle"></i>
-                    Thêm 1 sản phẩm mới</a>
                 <div class="row">
-                    <c:forEach items="${productList}" var="product">
-                        <div class="col-md-4 col-sm-6 mb-5">
-                            <div class="card" style="width: 100%;">
-                                <img src="${product.image}" class="card-img-top" style="height: 200px">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title text-center">${product.nameProduct}</h5>
-                                    <div class="d-flex justify-content-around mt-2 mb-3">
-                                    </div>
-                                    <a href="#" class="btn btn-primary">Sửa sản phẩm</a>
-                                    <a href="/shops?action=deleteProduct&idProduct=${product.idProduct}&idShop=${product.getShop().getIdShop()}" class="btn btn-primary">Xóa sản phẩm</a>
-                                </div>
-                            </div>
-                        </div>
-                    </c:forEach>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Mã giỏ hàng</th>
+                            <th scope="col">Tên khách hàng</th>
+                            <th scope="col">Ngày tạo</th>
+                            <th scope="col">Trạng thái</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach items="${cartList}" var="cart">
+                            <a href="">
+                                <tr>
+                                    <td>${cart.idCart}</td>
+                                    <td>${cart.getAccount().getName()}</td>
+                                    <td>${cart.createDate}</td>
+                                    <c:if test="${cart.status == 0}">
+                                        <td> Chưa xử lý</td>
+                                    </c:if>
+                                    <c:if test="${cart.status == 1}">
+                                        <td> Đã xử lý</td>
+                                    </c:if>
+                                </tr>
+                            </a>
+                        </c:forEach>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
