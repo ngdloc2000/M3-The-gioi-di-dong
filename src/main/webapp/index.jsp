@@ -15,12 +15,7 @@
     <title>$Title$</title>
   </head>
   <body>
-<<<<<<< HEAD
-  <c:redirect url="product/showProduct.jsp"/>
-  <c:forEach items="" var=""
-=======
+
   <c:redirect url="/accounts"/>
->>>>>>> 7d7744a69a61f3479ee7ea10cdadb875cacef130
-  $END$
   </body>
 </html>
