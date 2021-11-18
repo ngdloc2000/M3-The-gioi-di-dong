@@ -19,8 +19,9 @@ import java.util.List;
 
 @WebServlet(name = "AccountServlet", value = "/accounts")
 public class AccountServlet extends HttpServlet {
-    IRole iRole =  new RoleDAO();
+    IRole iRole = new RoleDAO();
     IAccount accountDAO = new AccountDAO();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -28,15 +29,15 @@ public class AccountServlet extends HttpServlet {
             action = "";
         }
 
-        switch (action){
+        switch (action) {
             case "create":
-                showCreateForm(request,response);
+                showCreateForm(request, response);
                 break;
             case "logout":
-                logout(request,response);
+                logout(request, response);
                 break;
             default:
-                showLoginForm(request,response);
+                showLoginForm(request, response);
                 break;
 
         }
@@ -51,7 +52,7 @@ public class AccountServlet extends HttpServlet {
     }
 
     private void logout(HttpServletRequest request, HttpServletResponse response) {
-        SessionUtil.getInstance().removeValue(request,"idUser");
+        SessionUtil.getInstance().removeValue(request, "idUser");
         try {
             response.sendRedirect("/accounts");
         } catch (IOException e) {
@@ -61,10 +62,10 @@ public class AccountServlet extends HttpServlet {
 
     private void showCreateForm(HttpServletRequest request, HttpServletResponse response) {
         List<Role> list = iRole.findAll();
-        request.setAttribute("list",list);
+        request.setAttribute("list", list);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("acount/register.jsp");
         try {
-            requestDispatcher.forward(request,response);
+            requestDispatcher.forward(request, response);
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -75,7 +76,7 @@ public class AccountServlet extends HttpServlet {
     private void showLoginForm(HttpServletRequest request, HttpServletResponse response) {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("acount/login.jsp");
         try {
-            requestDispatcher.forward(request,response);
+            requestDispatcher.forward(request, response);
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -86,34 +87,34 @@ public class AccountServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
-        if(action == null){
+        if (action == null) {
             action = "";
         }
-        switch (action){
+        switch (action) {
             case "create":
-                createAcount(request,response);
+                createAcount(request, response);
                 break;
             default:
-                login(request,response);
+                login(request, response);
                 break;
         }
     }
+
     private void login(HttpServletRequest request, HttpServletResponse response) {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        int check = accountDAO.validateUser(username,password);
-        if(check == -1){
+        int check = accountDAO.validateUser(username, password);
+        if (check == -1) {
             try {
-                SessionUtil.getInstance().removeValue(request,"idUser");
+                SessionUtil.getInstance().removeValue(request, "idUser");
                 response.sendRedirect("/accounts");
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
-        else {
-            if(check == 1){
+        } else {
+            if (check == 1) {
                 Account account = accountDAO.findByEmail(username);
-                request.setAttribute("idUser",account.getIdUser());
+                request.setAttribute("idUser", account.getIdUser());
 //                RequestDispatcher requestDispatcher = request.getRequestDispatcher("##");
 //                try {
 //                    requestDispatcher.forward(request,response);
@@ -122,19 +123,15 @@ public class AccountServlet extends HttpServlet {
 //                } catch (IOException e) {
 //                    e.printStackTrace();
 //                }
-                SessionUtil.getInstance().putValue(request,"idUser",account.getIdUser());
+                SessionUtil.getInstance().putValue(request, "idUser", account.getIdUser());
                 try {
                     response.sendRedirect("/shops");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }
-            else if(check == 2){
-
-            }
-            else if(check == 3){
+            } else if (check == 2) {
                 Account account = accountDAO.findByEmail(username);
-                request.setAttribute("idUser",account.getIdUser());
+                request.setAttribute("idUser", account.getIdUser());
 //                RequestDispatcher requestDispatcher = request.getRequestDispatcher("##");
 //                try {
 //                    requestDispatcher.forward(request,response);
@@ -143,7 +140,24 @@ public class AccountServlet extends HttpServlet {
 //                } catch (IOException e) {
 //                    e.printStackTrace();
 //                }
-                SessionUtil.getInstance().putValue(request,"idUser",account.getIdUser());
+                SessionUtil.getInstance().putValue(request, "idUser", account.getIdUser());
+                try {
+                    response.sendRedirect("/shops");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else if (check == 3) {
+                Account account = accountDAO.findByEmail(username);
+                request.setAttribute("idUser", account.getIdUser());
+//                RequestDispatcher requestDispatcher = request.getRequestDispatcher("##");
+//                try {
+//                    requestDispatcher.forward(request,response);
+//                } catch (ServletException e) {
+//                    e.printStackTrace();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+                SessionUtil.getInstance().putValue(request, "idUser", account.getIdUser());
                 try {
                     response.sendRedirect("/guest");
                 } catch (IOException e) {
@@ -153,13 +167,14 @@ public class AccountServlet extends HttpServlet {
         }
     }
 
+
     private void createAcount(HttpServletRequest request, HttpServletResponse response) {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String name = request.getParameter("name");
         int idRole = Integer.parseInt(request.getParameter("role"));
         Role role = iRole.findById(idRole);
-        Account account = new Account(username,password,name,role);
+        Account account = new Account(username, password, name, role);
         accountDAO.add(account);
         try {
             response.sendRedirect("/accounts");
