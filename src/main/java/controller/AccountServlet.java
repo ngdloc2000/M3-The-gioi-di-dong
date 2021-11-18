@@ -133,7 +133,22 @@ public class AccountServlet extends HttpServlet {
 
             }
             else if(check == 3){
-
+                Account account = accountDAO.findByEmail(username);
+                request.setAttribute("idUser",account.getIdUser());
+//                RequestDispatcher requestDispatcher = request.getRequestDispatcher("##");
+//                try {
+//                    requestDispatcher.forward(request,response);
+//                } catch (ServletException e) {
+//                    e.printStackTrace();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+                SessionUtil.getInstance().putValue(request,"idUser",account.getIdUser());
+                try {
+                    response.sendRedirect("/guest");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

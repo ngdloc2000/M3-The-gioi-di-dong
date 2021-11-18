@@ -14,7 +14,9 @@ import model.CartDetail;
 import model.Product;
 import model.ShowCart;
 import model.Rate;
-
+import dao.type.ITypeDAO;
+import dao.type.TypeDAO;
+import model.*;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,6 +32,8 @@ public class GuestServlet extends HttpServlet {
     ICartDao cartDAO = new CartDAO();
     ICartDetailDAO cartDetailDAO = new CartDetailDAO();
     IRateDAO rateDAO = new RateDAO();
+
+    ITypeDAO typeDAO = new TypeDAO();
     int idUser;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -50,12 +54,34 @@ public class GuestServlet extends HttpServlet {
             case "addComment":
                 addComment(request,response);
                 break;
+            case "filter":
+                filterProduct(request,response);
+                break;
             default:
                 showHome(request,response);
                 break;
 
         }
 
+    }
+
+    private void filterProduct(HttpServletRequest request, HttpServletResponse response) {
+        idUser = (int) SessionUtil.getInstance().getValue(request,"idUser");
+        int idTypes = Integer.parseInt(request.getParameter("idTypes"));
+        List<Product> list = productDAO.findByIdType(idTypes);
+        List<Type> types = typeDAO.findAll();
+        request.setAttribute("idUser",idUser);
+        request.setAttribute("list",list);
+        request.setAttribute("types",types);
+        AddCart(request,response);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("guest/home.jsp");
+        try {
+            requestDispatcher.forward(request,response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void pay(HttpServletRequest request, HttpServletResponse response) {
@@ -132,8 +158,10 @@ public class GuestServlet extends HttpServlet {
     private void showHome(HttpServletRequest request, HttpServletResponse response) {
         idUser = (int) SessionUtil.getInstance().getValue(request,"idUser");
         List<Product> list = productDAO.findAll();
+        List<Type> types = typeDAO.findAll();
         request.setAttribute("idUser",idUser);
         request.setAttribute("list",list);
+        request.setAttribute("types",types);
         AddCart(request,response);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("guest/home.jsp");
         try {
