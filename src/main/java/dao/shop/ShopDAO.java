@@ -22,9 +22,9 @@ public class ShopDAO implements IShopDAO {
     public static final String FIND_ALL_PRODUCTS_BY_USER_AND_SHOP = "select p.* from shop join product p on shop.idShop = p.idShop where idAccount = ? and shop.idShop = ?";
     public static final String INSERT_PRODUCT_TO_SHOP = "insert into product (nameProduct, price,quantity,description,idType,idShop) value (?,?,?,?,?,?)";
     public static final String DELETE_PRODUCT_OF_SHOP = "delete from product where idProduct = ?";
-    public static final String FIND_ALL_CARTS_BY_ID_SHOP = "select c.idCart, c.idAccount, c.createDate, c.status"
-            + "from cart c join cartdetail c2 on c.idCart = c2.idCart join product p on p.idProduct = c2.idProduct join shop s on s.idShop = p.idShop join account a on a.idAccount = c.idAccount"
-            + "where a.idRole = 2 and s.idShop = ?";
+    public static final String FIND_ALL_CARTS_BY_ID_SHOP = "select c.idCart, c.idAccount, c.createDate, c.status "
+            + "from cart c join cartdetail c2 on c.idCart = c2.idCart join product p on p.idProduct = c2.idProduct join shop s on s.idShop = p.idShop join account a on a.idAccount = c.idAccount "
+            + "where a.idRole = 3 and s.idShop = ?";
 
     IAccount accountDAO = new AccountDAO();
     ITypeDAO typeDAO = new TypeDAO();
@@ -194,6 +194,7 @@ public class ShopDAO implements IShopDAO {
     @Override
     public void createProductToShop(Product product) {
         try (Connection connection = getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(INSERT_PRODUCT_TO_SHOP)) {
+            connection.setAutoCommit(false);
             preparedStatement.setString(1, product.getNameProduct());
             preparedStatement.setInt(2, product.getPrice());
             preparedStatement.setInt(3, product.getQuantity());
