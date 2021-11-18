@@ -22,27 +22,20 @@
                 <th scope="col">Tên SP</th>
                 <th scope="col">Số Lượng SP</th>
                 <th scope="col">Giá</th>
+                <th scope="col">Thành tiền</th>
                 <th scope="col">Xóa</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-            </tr>
+            <c:forEach items="${list}" var="t">
+                <tr>
+                    <td>${t.getNameProduct()}</td>
+                    <td>${t.getNumber()}</td>
+                    <td>${t.getPrice()}</td>
+                    <td>${t.getTotal()}</td>
+                </tr>
+            </c:forEach>
+            <a href="/guest?action=pay&idCart=${idCart}">Mua Hàng</a>
             </tbody>
         </table>
     </div>

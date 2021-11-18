@@ -19,7 +19,11 @@
     <c:out value="${idUser}"></c:out>
     <c:out value="${product.idProduct}"></c:out>
     <c:out value="${idCart}"></c:out>
-    <c:set var="idCart" value="${cart.idCart}"></c:set>
+    <c:out value="${idCart}"></c:out>
+<%--    <c:set var="idCart" value="${cart.idCart}"></c:set>--%>
+    <h1>
+
+    </h1>
 
     <div class="col-md-3 col-sm-6">
         <div class="card" style="width: 18rem; height: 400px">
