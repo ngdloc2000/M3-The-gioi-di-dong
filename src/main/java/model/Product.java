@@ -12,10 +12,17 @@ public class Product {
     private Shop shop;
     public Product(){}
 
-
-
     public int getIdProduct() {
         return idProduct;
+    }
+
+    public Product(String nameProduct, int price, int quantity, String image, Type type, Shop shop) {
+        this.nameProduct = nameProduct;
+        this.price = price;
+        this.quantity = quantity;
+        this.image = image;
+        this.type = type;
+        this.shop = shop;
     }
 
     public Product(int idProduct, String nameProduct, int price, int quantity, String image, Type type, int idShop) {

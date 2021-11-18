@@ -13,3 +13,8 @@ a {
 ul {
     list-style: none;
 }
+
+.btn {
+    background: #ff5722;
+    border: none;
+}

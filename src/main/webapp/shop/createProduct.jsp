@@ -3,7 +3,7 @@
   Created by IntelliJ IDEA.
   User: ADMIN
   Date: 17-Nov-21
-  Time: 8:30 PM
+  Time: 11:23 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -47,52 +47,47 @@
 </div>
 
 <div id="main-secsion">
-    <div class="container-fluid d-flex justify-content-between" style="background: #f6f6f6">
-        <div id="sidebar-menu" style="width: 20%; height: 100%; background: white">
-            <div class="container-fluid">
-                <h3 class="text-center mt-3" style="margin-bottom: 20px">
-                    Danh mục
-                </h3>
-                <ul class="list-group">
-                    <h5>Quản lý đơn hàng</h5>
-                    <a href="">
-                        <li class="list-group-item">Tất cả</li>
-                    </a>
-                    <a href="">
-                        <li class="list-group-item">Đơn hàng đã xử lý</li>
-                    </a>
-                    <a href="">
-                        <li class="list-group-item">Đơn hàng chưa xử lý</li>
-                    </a>
-                </ul>
+    <div class="container-fluid" style="background: #f6f6f6; padding-top: 20px; padding-bottom: 10px">
+        <div class="container"
+             style="padding: 35px 40px 48px; background: #fff; border-radius: 2px; box-shadow: 0 2px 4px 0 darkgray;)">
+            <div style="padding-bottom: 28px; border-bottom: 1px solid #ededed;">
+                <h2 style="margin-bottom: 6px; font-size: 22px; color: #333333">Thêm 1 sản phẩm mới</h2>
+                <p style="color: #999; font-size: 12px">Vui lòng chọn loại sản phẩm phù hợp cho sản phẩm của bạn</p>
             </div>
-        </div>
-        <div id="content"
-             style="width: 79%; height: 100%; background: white; margin-top: 10px; box-shadow: 0 1px 4px 0 darkgrey;">
-            <div class="container-fluid">
-                <div class="row text-center mt-5 mb-5">
-                    <h1 class="text-title">Tất cả sản phẩm</h1>
+            <form method="post" class="row g-3">
+                <div class="col-md-4">
+                    <label for="validationDefault01" class="form-label">Tên sản phẩm</label>
+                    <input name="name" type="text" class="form-control" id="validationDefault01" required>
                 </div>
-                <a href="/shops?action=createProductToShop&idShop=${shop.idShop}" class="btn mb-3" style="color: white">
-                    <i class="fas fa-plus-circle"></i>
-                    Thêm 1 sản phẩm mới</a>
-                <div class="row">
-                    <c:forEach items="${productList}" var="product">
-                        <div class="col-md-4 col-sm-6 mb-5">
-                            <div class="card" style="width: 100%;">
-                                <img src="${product.image}" class="card-img-top" style="height: 200px">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title text-center">${product.nameProduct}</h5>
-                                    <div class="d-flex justify-content-around mt-2 mb-3">
-                                    </div>
-                                    <a href="#" class="btn btn-primary">Sửa sản phẩm</a>
-                                    <a href="/shops?action=deleteProduct&idProduct=${product.idProduct}&idShop=${product.getShop().getIdShop()}" class="btn btn-primary">Xóa sản phẩm</a>
-                                </div>
-                            </div>
-                        </div>
-                    </c:forEach>
+                <div class="col-md-4">
+                    <label for="validationDefault02" class="form-label">Giá</label>
+                    <input name="price" type="text" class="form-control" id="validationDefault02" required>
                 </div>
-            </div>
+                <div class="col-md-4">
+                    <label for="validationDefaultUsername" class="form-label">Số lượng</label>
+                    <div class="input-group">
+                        <input name="quantity" type="text" class="form-control" id="validationDefaultUsername"
+                               aria-describedby="inputGroupPrepend2" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="validationDefault03" class="form-label">Link Ảnh</label>
+                    <input name="image" type="text" class="form-control" id="validationDefault03" required>
+                </div>
+                <div class="col-md-3">
+                    <label for="validationDefault04" class="form-label">Thể loại</label>
+                    <select name="idType" class="form-select" id="validationDefault04" required>
+                        <option selected disabled value="">Chọn thể loại</option>
+                        <c:forEach var="type" items="${typelist}">
+                            <option value="${type.id_Type}">${type.name}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-primary" type="submit">Tạo sản phẩm</button>
+                </div>
+            </form>
+            <a href="/shops?action=shopDetail&idShop=${shop.idShop}" class="btn">Quay lại</a>
         </div>
     </div>
 </div>

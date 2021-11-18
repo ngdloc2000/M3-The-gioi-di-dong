@@ -10,11 +10,19 @@ import java.util.List;
 
 public class Cart {
 
-    private int idCart ;
+    private int idCart;
+    private Account account;
     private int idAccount;
     private Date createDate;
     private int status;
     private List<Product> productList;
+
+    public Cart(int idCart, Account account, Date createDate, int status) {
+        this.idCart = idCart;
+        this.account = account;
+        this.createDate = createDate;
+        this.status = status;
+    }
 
     public Cart(int idCart, int idAccount, Date createDate, int status) {
         this.idCart = idCart;
