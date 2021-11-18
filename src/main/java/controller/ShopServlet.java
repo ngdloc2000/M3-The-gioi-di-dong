@@ -101,7 +101,7 @@ public class ShopServlet extends HttpServlet {
         shopDAO.removeProductOfShop(id);
         List<Product> productList = this.shopDAO.findAllProductsByShopAndUser(idUser, idShop);
         request.setAttribute("productList", productList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("shop/shopDetail.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("shops?action=shopDetail&idShop=" + idShop);
         dispatcher.forward(request, response);
     }
 
