@@ -12,11 +12,8 @@ import dao.rate.RateDAO;
 import model.Cart;
 import model.CartDetail;
 import model.Product;
-<<<<<<< HEAD
 import model.ShowCart;
-=======
 import model.Rate;
->>>>>>> an
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
