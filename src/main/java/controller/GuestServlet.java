@@ -7,9 +7,12 @@ import dao.cartDetail.CartDetailDAO;
 import dao.cartDetail.ICartDetailDAO;
 import dao.product.IProduct;
 import dao.product.ProductDAO;
+import dao.rate.IRateDAO;
+import dao.rate.RateDAO;
 import model.Cart;
 import model.CartDetail;
 import model.Product;
+import model.Rate;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,6 +28,7 @@ public class GuestServlet extends HttpServlet {
     IProduct productDAO = new ProductDAO();
     ICartDao cartDAO = new CartDAO();
     ICartDetailDAO cartDetailDAO = new CartDetailDAO();
+    IRateDAO rateDAO = new RateDAO();
     int idUser;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -39,6 +43,9 @@ public class GuestServlet extends HttpServlet {
             case "details":
                 showDetailProduct(request,response);
                 break;
+            case "addComment":
+                addComment(request,response);
+                break;
             default:
                 showHome(request,response);
                 break;
@@ -47,12 +54,38 @@ public class GuestServlet extends HttpServlet {
 
     }
 
+    private void addComment(HttpServletRequest request, HttpServletResponse response) {
+        idUser = (int) SessionUtil.getInstance().getValue(request, "idUser");
+        String comment = request.getParameter("comment");
+        int rate = Integer.parseInt(request.getParameter("rate"));
+        int idProduct = Integer.parseInt(request.getParameter("idProduct"));
+        int idCart = Integer.parseInt(request.getParameter("idCart"));
+        request.setAttribute("idCart",idCart);
+        Product product = productDAO.findById(idProduct);
+        request.setAttribute("product",product);
+        rateDAO.add(new Rate(idUser,idProduct,comment,rate));
+        List<Rate> rateList = rateDAO.findAllRateByIdProduct(idProduct);
+        request.setAttribute("rateList",rateList);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("guest/detailProduct.jsp");
+        try {
+            requestDispatcher.forward(request,response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void showDetailProduct(HttpServletRequest request, HttpServletResponse response) {
         int idCart = Integer.parseInt(request.getParameter("idCart"));
         int idProduct = Integer.parseInt(request.getParameter("idProduct"));
         request.setAttribute("idCart",idCart);
         Product product = productDAO.findById(idProduct);
         request.setAttribute("product",product);
+        List<Rate> rateList = rateDAO.findAllRateByIdProduct(idProduct);
+        request.setAttribute("rateList",rateList);
+        int avgRate = rateDAO.findAVGRateByIdProduct(idProduct);
+        request.setAttribute("avgRate", avgRate);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("guest/detailProduct.jsp");
         try {
             requestDispatcher.forward(request,response);
@@ -124,6 +157,9 @@ public class GuestServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
+            case "addComment":
+                addComment(request,response);
+                break;
             case "details":
                 addProductToCart(request,response);
                 break;

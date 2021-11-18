@@ -34,7 +34,7 @@
             color: #EE4D2D;
         }
         .shopee-icon{
-            height: 3rem;
+            /*height: 3rem;*/
         }
     </style>
 </head>

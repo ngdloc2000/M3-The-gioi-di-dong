@@ -8,4 +8,5 @@ import java.util.List;
 public interface IRateDAO extends IDao<Rate> {
     List<Rate> findAllRateByIdProduct(int idProduct);
     List<Rate> findAllRateByIdAccount(int idAccount);
+    int findAVGRateByIdProduct(int idProduct);
 }

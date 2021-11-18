@@ -21,6 +21,14 @@ public class Rate {
         this.account = account1.findById(idAccount);
         this.product = product1.findById(idProduct);
     }
+    public Rate( int idAccount, int idProduct, String comment, int rate) {
+        IAccount account1 = new AccountDAO();
+        IProduct product1 = new ProductDAO();
+        this.comment = comment;
+        this.rate = rate;
+        this.account = account1.findById(idAccount);
+        this.product = product1.findById(idProduct);
+    }
 
     public Rate(int idRate, String comment, int rate, Account account, Product product) {
         this.idRate = idRate;
@@ -29,6 +37,7 @@ public class Rate {
         this.account = account;
         this.product = product;
     }
+
 
     public int getIdRate() {
         return idRate;
