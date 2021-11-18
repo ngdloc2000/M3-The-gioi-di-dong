@@ -64,7 +64,6 @@
                         style="margin-left: 35px; height: 41px; width: 335px; background: #ff5722">Submit
                 </button>
             </form>
-            <a href="/shops?action=shopDetail&idShop=${shop.idShop}" class="btn" style="background: #ee4d2d; color: white">Quay lại</a>
         </div>
     </div>
 </div>
