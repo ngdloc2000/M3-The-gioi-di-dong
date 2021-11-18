@@ -12,7 +12,7 @@ import java.util.List;
 public class CartDAO implements ICartDao {
     public static final String FIND_CART_BY_ID_ACCOUNT = "select * from cart where cart.idAccount = ?;";
     final String FIND_ALL_CART = "select * from cart;";
-    final String ADD_CART = "insert into cart(idAccount,createDate,status) value (?,?,?);";
+    final String ADD_CART = "insert into cart(idAccount, createDate, status) VALUE (?,?,?);";
     final String FIND_BY_ID = "select * from cart where idCart = ?;";
     final String FIND_BY_ID_ACCOUNT = " select * from cart where idAccount = ?";
     final String UPDATE_BY_ID = "update cart set idAccount = ?, createDate = ? , status = ?"+
@@ -21,8 +21,9 @@ public class CartDAO implements ICartDao {
 
 
     private ICartDetailDAO cartDetailDAO = new CartDetailDAO();
-    private Connection connection = null;
+
     private Connection getConnection(){
+        Connection connection = null;
         if(connection==null){
             try {
                 Class.forName(Config.CLASS_FOR_NAME);
@@ -69,6 +70,32 @@ public class CartDAO implements ICartDao {
             e.printStackTrace();
         }
     }
+    @Override
+    public int addReturnIDCart(Cart cart) {
+        int idCart = 0;
+        try {
+            Connection connection = getConnection();
+            connection.setAutoCommit(false);
+            PreparedStatement ps = getConnection().prepareStatement(ADD_CART,Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1,cart.getIdAccount());
+            ps.setDate(2, (Date) cart.getCreateDate());
+            ps.setInt(3,cart.getStatus());
+            ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            while (rs.next()){
+                idCart = rs.getInt(1);
+            }
+            if(idCart == 0){
+                connection.rollback();
+            }
+            else {
+                connection.commit();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return idCart;
+    }
 
     @Override
     public Cart findById(int id) {
@@ -77,11 +104,13 @@ public class CartDAO implements ICartDao {
             PreparedStatement ps = getConnection().prepareStatement(FIND_BY_ID);
             ps.setInt(1,id);
             ResultSet rs = ps.executeQuery();
-            int idCart = rs.getInt("idCart");
-            int idAccount = rs.getInt("idAccount");
-            Date createDate = rs.getDate("createDate");
-            int status =rs.getInt("status");
-            cart = new Cart(idCart,idAccount,createDate,status);
+            while (rs.next()){
+                int idCart = rs.getInt(1);
+                int idAccount = rs.getInt(2);
+                Date createDate = rs.getDate(3);
+                int status =rs.getInt(4);
+                cart = new Cart(idCart,idAccount,createDate,status);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

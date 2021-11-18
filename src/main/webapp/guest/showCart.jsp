@@ -15,29 +15,36 @@
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
-    <c:out value="${idUser}"></c:out>
-    <c:out value="${cart.idCart}"></c:out>
-    <c:set var="idCart" value="${cart.idCart}"></c:set>
-    <form>
-        <button type="submit"></button>
-        <input type="hidden" name="idCart" value="${cart.idCart}">
-        <input type="hidden" name="action" value="showcart">
-    </form>
     <div class="container">
-        <div class="row">
-            <c:forEach var="t" items="${list}">
-                <div class="col-md-3 col-sm-6">
-                    <div class="card" style="width: 18rem; height: 400px">
-                        <a href="/guest?action=details&idProduct=${t.idProduct}&idCart=${cart.idCart}">
-                            <img class="card-img-top" src="${t.image}" alt="Card image cap">
-                        </a>
-                        <div class="card-body">
-                            <p class="card-text text-center">${t.nameProduct}</p>
-                        </div>
-                    </div>
-                </div>
-            </c:forEach>
-        </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Tên SP</th>
+                <th scope="col">Số Lượng SP</th>
+                <th scope="col">Giá</th>
+                <th scope="col">Xóa</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td colspan="2">Larry the Bird</td>
+                <td>@twitter</td>
+            </tr>
+            </tbody>
+        </table>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
