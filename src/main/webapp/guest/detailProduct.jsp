@@ -61,8 +61,8 @@
 <%--<c:out value="${product.idProduct}"></c:out>--%>
 <%--<c:out value="${idCart}"></c:out>--%>
 <%--    <c:set var="idCart" value="${cart.idCart}"></c:set>--%>
-
-<div id="header" style="height: 85px">
+<div class="container">
+<div class="" id="header" style="height: 85px">
     <div class="container-fluid d-flex justify-content-between">
         <div class="wrap1 d-flex">
             <div>
@@ -178,7 +178,7 @@
         </div>
     </div>
 </div>
-
+</div>
 <%--<div class="row">--%>
 <%--    <div class="col-md-3 col-sm-6 offset-md-4 offset-sm-3">--%>
 <%--        <div class="card">--%>
@@ -273,7 +273,7 @@
 <%--                    <button type="submit" class="btn btn-primary">Gửi</button>--%>
 <%--                </form>--%>
 <%--            </div>--%>
-        </div>
+<%--        </div>--%>
 
 <%--    </div>--%>
 <%--</div>--%>
