@@ -10,6 +10,7 @@ import dao.product.ProductDAO;
 import model.Cart;
 import model.CartDetail;
 import model.Product;
+import model.ShowCart;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -39,6 +40,9 @@ public class GuestServlet extends HttpServlet {
             case "details":
                 showDetailProduct(request,response);
                 break;
+            case "pay":
+                pay(request,response);
+                break;
             default:
                 showHome(request,response);
                 break;
@@ -47,12 +51,24 @@ public class GuestServlet extends HttpServlet {
 
     }
 
+    private void pay(HttpServletRequest request, HttpServletResponse response) {
+        int idCart = Integer.parseInt(request.getParameter("idCart"));
+        Cart cart = cartDAO.findById(idCart);
+        cart.setStatus(1);
+        cartDAO.update(idCart,cart);
+        try {
+            response.sendRedirect("/guest");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void showDetailProduct(HttpServletRequest request, HttpServletResponse response) {
         int idCart = Integer.parseInt(request.getParameter("idCart"));
         int idProduct = Integer.parseInt(request.getParameter("idProduct"));
-        request.setAttribute("idCart",idCart);
         Product product = productDAO.findById(idProduct);
         request.setAttribute("product",product);
+        request.setAttribute("idCart",idCart);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("guest/detailProduct.jsp");
         try {
             requestDispatcher.forward(request,response);
@@ -66,8 +82,18 @@ public class GuestServlet extends HttpServlet {
     private void showCart(HttpServletRequest request, HttpServletResponse response) {
         int idCart = Integer.parseInt(request.getParameter("idCart"));
         idUser = (int) SessionUtil.getInstance().getValue(request,"idUser");
-
-
+        List<ShowCart> list = cartDetailDAO.showCartByidCart(idCart);
+        request.setAttribute("list",list);
+        request.setAttribute("idCart",idCart);
+        request.setAttribute("idUser",idUser);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("guest/showCart.jsp");
+        try {
+            requestDispatcher.forward(request,response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -134,7 +160,15 @@ public class GuestServlet extends HttpServlet {
         int idCart = Integer.parseInt(request.getParameter("idCart"));
         int idProduct = Integer.parseInt(request.getParameter("idProduct"));
         int number = Integer.parseInt(request.getParameter("number"));
-        cartDetailDAO.add(new CartDetail(idCart,idProduct,number));
+        CartDetail cartDetail = cartDetailDAO.findCartDetailForIdProductAndIdCart(idCart,idProduct);
+        if(cartDetail != null){
+            int numberOld = cartDetail.getNumber();
+            int numberNew = numberOld + number;
+            cartDetailDAO.update(numberNew,cartDetail);
+        }
+        else {
+            cartDetailDAO.add(new CartDetail(idCart,idProduct,number));
+        }
         Product product =  productDAO.findById(idProduct);
         request.setAttribute("idCart",idCart);
         request.setAttribute("product",product);
