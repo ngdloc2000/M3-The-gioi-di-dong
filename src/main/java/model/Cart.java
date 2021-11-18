@@ -17,6 +17,14 @@ public class Cart {
     private int status;
     private List<Product> productList;
 
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
     public Cart(int idCart, Account account, Date createDate, int status) {
         this.idCart = idCart;
         this.account = account;
