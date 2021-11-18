@@ -49,16 +49,14 @@
     </style>
 </head>
 <body>
-<<<<<<< HEAD
-    <c:out value="${idUser}"></c:out>
-    <c:out value="${product.idProduct}"></c:out>
-    <c:out value="${idCart}"></c:out>
-    <c:out value="${idCart}"></c:out>
+<%--    <c:out value="${idUser}"></c:out>--%>
+<%--    <c:out value="${product.idProduct}"></c:out>--%>
+<%--    <c:out value="${idCart}"></c:out>--%>
+<%--    <c:out value="${idCart}"></c:out>--%>
 <%--    <c:set var="idCart" value="${cart.idCart}"></c:set>--%>
-    <h1>
+<%--    <h1>--%>
 
-    </h1>
-=======
+<%--    </h1>--%>
 <%--<c:out value="${idUser}"></c:out>--%>
 <%--<c:out value="${product.idProduct}"></c:out>--%>
 <%--<c:out value="${idCart}"></c:out>--%>
@@ -116,7 +114,6 @@
     </div>
 </header>
 
->>>>>>> an
 
 <div class="row">
     <div class="col-md-3 col-sm-6 offset-md-4 offset-sm-3">
