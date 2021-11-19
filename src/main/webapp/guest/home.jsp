@@ -9,13 +9,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Home</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
           integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <style>
+        .sidebar{
+            position: sticky;
+            top: 0;
+            z-index: 8;
+        }
+    </style>
 </head>
 <body>
 
@@ -49,7 +56,7 @@
 
 <div id="main-secsion">
     <div class="container-fluid d-flex justify-content-between" style="background: #f6f6f6">
-        <div id="sidebar-menu" style="width: 20%; height: 100%; background: white">
+        <div class="sidebar" id="sidebar-menu" style="width: 20%; height: 100%; background: white">
             <div class="container-fluid">
                 <h3 class="text-center mt-3" style="margin-bottom: 20px">
                     Danh mục

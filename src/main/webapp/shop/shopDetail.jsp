@@ -21,7 +21,14 @@
           integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" href="../css/style.css">
-    <title>Hello, world!</title>
+    <title>Thông Tin Shop</title>
+    <style>
+        .sidebar{
+            position: sticky;
+            top: 0;
+            z-index: 8;
+        }
+    </style>
 </head>
 <body>
 <div id="header" style="height: 85px">
@@ -48,7 +55,7 @@
 
 <div id="main-secsion">
     <div class="container-fluid d-flex justify-content-between" style="background: #f6f6f6">
-        <div id="sidebar-menu" style="width: 20%; height: 100%; background: white">
+        <div class="sidebar" id="sidebar-menu" style="width: 20%; height: 100%; background: white">
             <div class="container-fluid">
                 <h3 class="text-center mt-3" style="margin-bottom: 20px">
                     Danh mục
