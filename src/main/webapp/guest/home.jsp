@@ -22,6 +22,9 @@
             top: 0;
             z-index: 8;
         }
+        *{
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>

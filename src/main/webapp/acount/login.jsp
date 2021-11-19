@@ -21,8 +21,10 @@
         <div class="container d-flex justify-content-between" style="height: 100%">
             <div class="d-flex">
                 <div>
-                    <img id="logo"
-                         src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Shopee.svg/2560px-Shopee.svg.png">
+                    <a href="/accounts">
+                        <img id="logo"
+                             src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Shopee.svg/2560px-Shopee.svg.png">
+                    </a>
                 </div>
                 <div style="font-size: 24px; color: #222; margin-top: 28px">
                     Đăng nhập
@@ -59,10 +61,18 @@
                 <button type="submit" class="btn btn-primary"
                         style="margin-left: 35px; height: 41px; width: 335px; background: #ff5722">Submit
                 </button>
+                <div>
+                    <a class="mt-5" href="/accounts?action=create"><button type="button" class="btn btn-primary"
+                                                           style="margin-left: 35px; height: 41px; width: 335px; margin-top: 10px; background: #ff5722">Đăng kí
+                    </button></a>
+                </div>
             </form>
+
         </div>
+
     </div>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
