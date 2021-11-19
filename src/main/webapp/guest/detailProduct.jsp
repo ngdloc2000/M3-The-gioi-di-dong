@@ -17,50 +17,11 @@
           integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <style>
-        .navbar-brand {
-            color: black;
-            font-family: "Abel", sans-serif;
-            font-weight: bold;
-            align-self: center;
-            font-size: 32px;
-            padding: 0;
-        }
 
-        .nav-link {
-            font-size: 18px;
-            color: black;
-            font-family: "Poppins", sans-serif;
-        }
-
-        .out {
-            outline: none;
-            border: none;
-            border-radius: 6px;
-            color: #fff;
-            background-color: rgb(31, 31, 31);
-            font-size: 13px;
-            font-weight: 500;
-            text-align: center;
-            height: 40px;
-            width: 350px;
-            margin-left: 60px;
-            cursor: pointer;
-        }
     </style>
 </head>
 <body>
-<%--    <c:out value="${idUser}"></c:out>--%>
-<%--    <c:out value="${product.idProduct}"></c:out>--%>
-<%--    <c:out value="${idCart}"></c:out>--%>
-<%--    <c:out value="${idCart}"></c:out>--%>
-<%--    <c:set var="idCart" value="${cart.idCart}"></c:set>--%>
-<%--    <h1>--%>
 
-<%--    </h1>--%>
-<%--<c:out value="${idUser}"></c:out>--%>
-<%--<c:out value="${product.idProduct}"></c:out>--%>
-<%--<c:out value="${idCart}"></c:out>--%>
-<%--    <c:set var="idCart" value="${cart.idCart}"></c:set>--%>
 <div class="container">
 <div class="" id="header" style="height: 85px">
     <div class="container-fluid d-flex justify-content-between">
@@ -143,7 +104,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Đánh giá sản phẩm</label>
-                        <input type="number" class="form-control" id="exampleInputPassword1" name="rate">
+                        <input type="number" class="form-control" id="exampleInputPassword1" name="rate" placeholder="0-5 Star">
                     </div>
                     <div class="mb-3 form-check">
                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -179,105 +140,6 @@
     </div>
 </div>
 </div>
-<%--<div class="row">--%>
-<%--    <div class="col-md-3 col-sm-6 offset-md-4 offset-sm-3">--%>
-<%--        <div class="card">--%>
-<%--            <img class="card-img-top" src="${product.image}" alt="Card image cap">--%>
-<%--            <div class="card-body">--%>
-<%--                <div class="d-flex">--%>
-<%--                    <label class="me-3">Tên sản phẩm: </label>--%>
-<%--                    <p class="card-text text-center">${product.nameProduct}</p>--%>
-<%--                </div>--%>
-<%--                <div class="d-flex">--%>
-<%--                    <label class="me-3">Giá sản phẩm: </label>--%>
-<%--                    <p class="card-text text-center">${product.price}</p>--%>
-<%--                </div>--%>
-<%--                <div class="d-flex">--%>
-<%--                    <label class="me-3">Số lượng sản phẩm: </label>--%>
-<%--                    <p class="card-text text-center">${product.quantity}</p>--%>
-<%--                </div>--%>
-<%--                <div class="d-flex">--%>
-<%--                    <label class="me-3">Loại sản phẩm: </label>--%>
-<%--                    <p class="card-text text-center">${product.getType().getName()}</p>--%>
-<%--                </div>--%>
-<%--                <div class="d-flex">--%>
-<%--                    <label class="me-3">Tên shop: </label>--%>
-<%--                    <p class="card-text text-center">${product.getShop().getNameShop()}</p>--%>
-<%--                </div>--%>
-<%--                <div class="d-flex">--%>
-<%--                    <label class="me-3">Rating : </label>--%>
-<%--                    <p class="card-text text-center">${product.getAvgRate()} <i class="fas fa-star"></i></p>--%>
-<%--                </div>--%>
-<%--                <form method="post">--%>
-<%--                    <label>Chọn số lượng</label>--%>
-<%--                    <input type="text" name="number">--%>
-<%--                    <input type="hidden" name="idProduct" value="${product.idProduct}">--%>
-<%--                    <input type="hidden" name="idCart" value="${idCart}">--%>
-<%--                    &lt;%&ndash;                    <input type="hidden" name="action" value="addToCart">&ndash;%&gt;--%>
-<%--                    <button type="submit">Thêm vào giỏ hàng</button>--%>
-<%--                </form>--%>
-<%--                <a href="/guest?action=showcart&idCart=${idCart}">Mua ngay</a>--%>
-<%--            </div>--%>
-<%--            <div class="comment col offset-1">--%>
-<%--                <table class="table">--%>
-<%--                    <thead>--%>
-<%--                    <tr>--%>
-<%--                        <th scope="col">User</th>--%>
-<%--                        <th scope="col">Đánh Giá</th>--%>
-<%--                        <th scope="col">Rate</th>--%>
-<%--                    </tr>--%>
-<%--                    </thead>--%>
-<%--                    <tbody>--%>
-<%--                    <c:forEach var="rate" items="${rateList}">--%>
-<%--                        <tr>--%>
-<%--                            <th scope="row">${rate.account.getName()}</th>--%>
-<%--                            <td>${rate.comment}</td>--%>
-<%--                            <td>${rate.rate} <i class="fas fa-star"></i></td>--%>
-<%--                        </tr>--%>
-<%--                    </c:forEach>--%>
-<%--                    </tbody>--%>
-<%--                </table>--%>
-<%--            </div>--%>
-<%--&lt;%&ndash;            <div class="addComment">&ndash;%&gt;--%>
-<%--&lt;%&ndash;                <form method="get">&ndash;%&gt;--%>
-<%--&lt;%&ndash;                    <p>UserID: ${idUser}</p><br>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                    <label for="comment">Comment</label>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                    <input id="comment" type="text" name="comment" placeholder="Comment Here"><br>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                    <label for="rate">Rate</label>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                    <input type="number" name="rate" id="rate" placeholder="Rate Product"><br>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                    <input type="hidden" name="action" value="addComment">&ndash;%&gt;--%>
-<%--&lt;%&ndash;                    <input type="hidden" name="idProduct" value="${product.idProduct}">&ndash;%&gt;--%>
-<%--&lt;%&ndash;                    <input type="hidden" name="idCart" value="${idCart}">&ndash;%&gt;--%>
-<%--&lt;%&ndash;                    <input type="submit" name="" value="submit">&ndash;%&gt;--%>
-
-<%--                </form>--%>
-<%--            </div>--%>
-<%--            <div>--%>
-<%--                <form>--%>
-<%--                    <div class="mb-3">--%>
-<%--                        <label for="exampleInputEmail1" class="form-label">Nhận xét</label>--%>
-<%--                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="comment">--%>
-<%--                        <div id="emailHelp" class="form-text">Đừng nói những lời quá đáng =((</div>--%>
-<%--                    </div>--%>
-<%--                    <div class="mb-3">--%>
-<%--                        <label for="exampleInputPassword1" class="form-label">Đánh giá sản phẩm</label>--%>
-<%--                        <input type="number" class="form-control" id="exampleInputPassword1" name="rate">--%>
-<%--                    </div>--%>
-<%--                    <div class="mb-3 form-check">--%>
-<%--                        <input type="checkbox" class="form-check-input" id="exampleCheck1">--%>
-<%--                        <label class="form-check-label" for="exampleCheck1">Nhấn em đi</label>--%>
-<%--                    </div>--%>
-<%--                    <input type="hidden" name="action" value="addComment">--%>
-<%--                    <input type="hidden" name="idProduct" value="${product.idProduct}">--%>
-<%--                    <input type="hidden" name="idCart" value="${idCart}">--%>
-<%--                    <button type="submit" class="btn btn-primary">Gửi</button>--%>
-<%--                </form>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-
-<%--    </div>--%>
-<%--</div>--%>
-
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"

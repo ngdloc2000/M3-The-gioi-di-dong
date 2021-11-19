@@ -118,7 +118,7 @@ public class ShopServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    private void createProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void  createProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("name");
         int price = Integer.parseInt(request.getParameter("price"));
         int quantity = Integer.parseInt(request.getParameter("quantity"));
